@@ -15,9 +15,11 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,28 +27,52 @@ QT_BEGIN_NAMESPACE
 class Ui_QtGuiApplication1Class
 {
 public:
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
     QWidget *centralWidget;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout;
+    QPushButton *pushButton;
+    QMenuBar *menuBar;
+    QMenu *menuHello_World;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *QtGuiApplication1Class)
     {
         if (QtGuiApplication1Class->objectName().isEmpty())
             QtGuiApplication1Class->setObjectName(QStringLiteral("QtGuiApplication1Class"));
-        QtGuiApplication1Class->resize(600, 400);
-        menuBar = new QMenuBar(QtGuiApplication1Class);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        QtGuiApplication1Class->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(QtGuiApplication1Class);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        QtGuiApplication1Class->addToolBar(mainToolBar);
+        QtGuiApplication1Class->resize(284, 253);
         centralWidget = new QWidget(QtGuiApplication1Class);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        verticalLayoutWidget = new QWidget(centralWidget);
+        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(0, 0, 271, 201));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        pushButton = new QPushButton(verticalLayoutWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy);
+
+        verticalLayout->addWidget(pushButton);
+
         QtGuiApplication1Class->setCentralWidget(centralWidget);
+        menuBar = new QMenuBar(QtGuiApplication1Class);
+        menuBar->setObjectName(QStringLiteral("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 284, 26));
+        menuHello_World = new QMenu(menuBar);
+        menuHello_World->setObjectName(QStringLiteral("menuHello_World"));
+        QtGuiApplication1Class->setMenuBar(menuBar);
         statusBar = new QStatusBar(QtGuiApplication1Class);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         QtGuiApplication1Class->setStatusBar(statusBar);
+
+        menuBar->addAction(menuHello_World->menuAction());
 
         retranslateUi(QtGuiApplication1Class);
 
@@ -56,6 +82,8 @@ public:
     void retranslateUi(QMainWindow *QtGuiApplication1Class)
     {
         QtGuiApplication1Class->setWindowTitle(QApplication::translate("QtGuiApplication1Class", "QtGuiApplication1", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("QtGuiApplication1Class", "Hello World Button", Q_NULLPTR));
+        menuHello_World->setTitle(QApplication::translate("QtGuiApplication1Class", "Hello World", Q_NULLPTR));
     } // retranslateUi
 
 };
