@@ -1,6 +1,6 @@
-firefox firefox.exe firefoxa ; 
-chrome chrome.exe ; 
-notepad notatnik leafpad ; 
+firefox.exe firefox firefoxa ; 
+chrome.exe chrome ; 
+notepad.exe notepad notatnik leafpad ; 
 explorer explorer.exe explorera ; 
 min minutach minut minute ; 
 h godzinach godzinie ; 

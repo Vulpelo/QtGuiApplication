@@ -15,10 +15,8 @@
 
 using namespace std;
 
-
 class MyThread : public QThread
 {
-	//wxFrame* m_parent;
 	Q_OBJECT
 
 	void run() override {
@@ -26,9 +24,9 @@ class MyThread : public QThread
 
 		sleep(sleepTime);
 
-		string commendText;//cout<<"*\n";
+		string commendText;
 		if (commendNumber == "P000")
-		{//cout<<"*P000\n";
+		{
 			commendText.insert(0, commendMain + " ");
 			int nrr = 1;
 			while (PobSlowZWiersza(commendText, nrr) != "|$|$|" && PobSlowZWiersza(commendText, nrr) != " ") nrr++;
@@ -46,18 +44,19 @@ class MyThread : public QThread
 			}
 		}
 		else if (commendNumber == "P001")
-		{//cout<<"*P001\n";
+		{
 			char T[100]; for (int i = 0; i<100; i++) T[i] = '\0';
-			for (int i = 0; i<commendVariables.size(); i++) T[i] = commendVariables[i];
+			for (int i = 0; i<commendVariables.size(); i++) 
+				T[i] = commendVariables[i];
 			system(T);
 		}
 		else if (commendNumber == "P002")
-		{//cout<<"*P002\n";
+		{
 			char T[100]; for (int i = 0; i<100; i++) T[i] = '\0';
 			for (int i = 0; i<commendMain.size(); i++) T[i] = commendMain[i]; cout << commendMain << endl;
 			system(T);
 		}
-
+		
 		/*
 		Powiadomienia, Potwierdzenia wykonania
 		*/
@@ -90,22 +89,14 @@ class MyThread : public QThread
 			wejout.close();
 			remove("out.txt");
 			//wskTextCtrlOut->SetValue("Wykonano screenshot'a\nZdjecie zapisano w pliku o nazwie 'ScreenShot.png', w lokalizacji programu.");
-			//wxMessageBox(wxT("HEJ!"));
 		}
-		//
-		//wxSND(AI_inWX_0_0_1Frame);
-		//long x=wxSND->ShowModal();
-
-		//return;
 
 		emit resultReady(result);
 	}
 
 public:
 	MyThread()
-	{
-		//m_parent = parent;
-	}
+	{}
 
 	string commendNumber;
 	string commendVariables;
@@ -131,12 +122,13 @@ private:
 	Ui::QtGuiApplication1Class ui;
 
 public:
-	void Execute() {
+	void Execute() 
+	{
 		QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(doCommendFun()));
 	}
 public slots:
-	void doCommendFun() {
-
+	void doCommendFun() 
+	{
 		short numberOfErrors = 0;
 
 		fstream slowazmienne("slowa_zmienne.txt");
@@ -149,15 +141,13 @@ public slots:
 		short polec = 0;/*!*/
 		char myText[100];
 
-		int myTextW = 0; for (int i = 0; i<100; i++) myText[i] = '\0';
+		int myTextW = 0; for (int i = 0; i<100; i++)
+			myText[i] = '\0';
 
 		c = ui.textBoxCommand->text().toStdString();
 
-
 		if (c.size() > 0)
 		{
-			//cout<<">";
-			//getline(cin,c);
 			ui.TextCtrlLastCommand->setText(stringToQString(c));
 			DoKommendyPodstawowej(c, slowapolecen, nrpolecen, slowazmienne, deleteFindWords, numberOfErrors, ui.TextCtrlOut);
 			
@@ -166,7 +156,8 @@ public slots:
 			nrSlowa = 1;
 			string wordCommendCombination = "";
 
-			if (PobSlowZWiersza(c, 1) == "!000")//komenda"znajdz" "P002"
+			//komenda "znajdz" "P002"
+			if (PobSlowZWiersza(c, 1) == "!000")
 			{
 				wordCommendCombination += "find ~";
 				nrSlowa++;
@@ -256,7 +247,8 @@ public slots:
 					nrSlowa++;
 				}
 				wordCommendCombination += "> out.txt ;";// gnome-open out.txt;";
-														//tworzenie thread
+				
+				//tworzenie watku
 				MyThread *t = new MyThread();
 
 				t->commendMain = wordCommendCombination;
@@ -270,72 +262,68 @@ public slots:
 				connect(t, &MyThread::finished, t, &QObject::deleteLater);
 				t->start();
 
-				/*
-				nrSlowa=1;
-				while(jestCzas==0 and PobSlowZWiersza(c,nrSlowa)!= " ")
-				if(PobSlowZWiersza(c,nrSlowa)[0]=='%')jestCzas=1;
-				else nrSlowa++;
-				if(jestCzas)
-				{
-				t->sleepTime=TimeInMsec(StringToInteger(PobSlowZWiersza(c,nrSlowa+1)),PobSlowZWiersza(c,nrSlowa+2));
-				jestCzas=false;
-				}
-				*/
-				//wxMessageBox(wxT("Wykonywanie komendy"));
 				ui.TextCtrlOut->setText("Wyszukiwanie...");
 			}
-			else //########################################################################################################################
+			else
 			{
 
-				 while (polec != 2 && PobSlowZWiersza(c, nrSlowa) != " ")
-					if (PobSlowZWiersza(c, nrSlowa)[0] == '$') { wordCommendCombination += PobSlowZWiersza(c, nrSlowa) + " "; nrSlowa++; polec = 1; }/*!*/
-					else if (polec != 1) { nrSlowa++; }
-					else polec = 2;
-					// TODO: End line for linux += ";/r";
-					tekst = ""; wordCommendCombination += ";";
-					for (int i = 0; i<IloscZmiennychPolecenia(wordCommendCombination, nrpolecen, numberOfErrors, ui.TextCtrlOut); i++)
+				while (polec != 2 && PobSlowZWiersza(c, nrSlowa) != " ")
+				{
+					if (PobSlowZWiersza(c, nrSlowa)[0] == '$')
 					{
-						tekst += PobSlowZWiersza(c, nrSlowa + i);
-					}//cout<<c<<endl<<tekst<<endl;
-					 //commend(NumerPolecenia(wordCommendCombination, nrpolecen), tekst, KomendaPoleceniaSystemu(wordCommendCombination, nrpolecen));
-
-					 //Tworzenie w¹tku
-					MyThread* t = new MyThread();
-
-					t->commendMain = KomendaPoleceniaSystemu(wordCommendCombination, nrpolecen, numberOfErrors, ui.TextCtrlOut);
-					t->commendNumber = NumerPolecenia(wordCommendCombination, nrpolecen, numberOfErrors, ui.TextCtrlOut);
-					t->commendVariables = tekst;
-					t->wskTextCtrlOut = ui.TextCtrlOut;
-
-					if (wordCommendCombination == "$007 $006 ;\r")
-						t->nrPowiadomienia = 2;
-
-
-					nrSlowa = 1;
-					while (jestCzas == 0 && PobSlowZWiersza(c, nrSlowa) != " ")
-						if (PobSlowZWiersza(c, nrSlowa)[0] == '%')jestCzas = 1;
-						else nrSlowa++;
-
-					if (jestCzas)
-					{
-						t->sleepTime = TimeInMsec(StringToInteger(PobSlowZWiersza(c, nrSlowa + 1)), PobSlowZWiersza(c, nrSlowa + 2));
-						jestCzas = false;
+						wordCommendCombination += PobSlowZWiersza(c, nrSlowa) + " ";
+						nrSlowa++;
+						polec = 1;
 					}
-					else t->sleepTime = 0;
+					else if (polec != 1)
+					{
+						nrSlowa++;
+					}
+					else
+						polec = 2;
+				}
+				// TODO: End line for linux += ";/r";
+				tekst = ""; wordCommendCombination += ";";
+				for (int i = 0; i < IloscZmiennychPolecenia(wordCommendCombination, nrpolecen, numberOfErrors, ui.TextCtrlOut); i++)
+				{
+					tekst += PobSlowZWiersza(c, nrSlowa + i);
+				}
 
-					connect(t, &MyThread::resultReady, this, &QtGuiApplication1::handleResults);
-					connect(t, &MyThread::finished, t, &QObject::deleteLater);
+				//Tworzenie w¹tku
+				MyThread* t = new MyThread();
+
+				t->commendMain = KomendaPoleceniaSystemu(wordCommendCombination, nrpolecen, numberOfErrors, ui.TextCtrlOut);
+				t->commendNumber = NumerPolecenia(wordCommendCombination, nrpolecen, numberOfErrors, ui.TextCtrlOut);
+				t->commendVariables = tekst;
+				t->wskTextCtrlOut = ui.TextCtrlOut;
+
+				if (wordCommendCombination == "$007 $006 ;\r")
+					t->nrPowiadomienia = 2;
+
+				nrSlowa = 1;
+				while (jestCzas == 0 && PobSlowZWiersza(c, nrSlowa) != " ") 
+				{
+					if (PobSlowZWiersza(c, nrSlowa)[0] == '%')
+						jestCzas = 1;
+					else
+						nrSlowa++;
+				}
+
+				if (jestCzas)
+				{
+					t->sleepTime = TimeInMsec(StringToInteger(PobSlowZWiersza(c, nrSlowa + 1)), PobSlowZWiersza(c, nrSlowa + 2));
+					jestCzas = false;
+				}
+				else 
+					t->sleepTime = 0;
+
+				connect(t, &MyThread::resultReady, this, &QtGuiApplication1::handleResults);
+				connect(t, &MyThread::finished, t, &QObject::deleteLater);
 						
-					t->start();
-
-					//if (jestCzas) wxMessageBox(wxT("Wykonanie komendy po wskazanym czasie"));
-					//else wxMessageBox(wxT("Wykonywanie komendy"));
+				t->start();
 			}
 
-
-
-			//cout<<"AI: Co chcesz abym zrobil?(wcisnij ENTER aby zatwierdzic tekst)\n";
-		};
+		}
 
 		slowapolecen.close();
 		slowazmienne.close();
@@ -343,5 +331,7 @@ public slots:
 		deleteFindWords.close();
 	}
 
-	void handleResults(){}
+	void handleResults()
+	{
+	}
 };
