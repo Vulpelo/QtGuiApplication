@@ -158,13 +158,10 @@ public slots:
 		{
 			//cout<<">";
 			//getline(cin,c);
-			QString qc; 
-			qc = qc.fromStdString(c);
-			ui.TextCtrlLastCommand->setText(qc);
+			ui.TextCtrlLastCommand->setText(stringToQString(c));
 			DoKommendyPodstawowej(c, slowapolecen, nrpolecen, slowazmienne, deleteFindWords, numberOfErrors, ui.TextCtrlOut);
 			
-			qc = qc.fromStdString(c);
-			ui.TextCtrlLastCommandEdited->setText(qc);
+			ui.TextCtrlLastCommandEdited->setText(stringToQString(c));
 
 			nrSlowa = 1;
 			string wordCommendCombination = "";
@@ -294,7 +291,8 @@ public slots:
 					if (PobSlowZWiersza(c, nrSlowa)[0] == '$') { wordCommendCombination += PobSlowZWiersza(c, nrSlowa) + " "; nrSlowa++; polec = 1; }/*!*/
 					else if (polec != 1) { nrSlowa++; }
 					else polec = 2;
-					tekst = ""; wordCommendCombination += ";\r";
+					// TODO: End line for linux += ";/r";
+					tekst = ""; wordCommendCombination += ";";
 					for (int i = 0; i<IloscZmiennychPolecenia(wordCommendCombination, nrpolecen, numberOfErrors, ui.TextCtrlOut); i++)
 					{
 						tekst += PobSlowZWiersza(c, nrSlowa + i);

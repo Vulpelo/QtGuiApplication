@@ -113,7 +113,7 @@ string NumerPolecenia(string szukanyNumer, fstream & polecenia, short &error, QT
         }
         else getline(polecenia,wiersz);
     error++;
-    string wyjError="\n!#Blad w funkcji NumerPolecenia &Nieznaleniono numeru polecenia w pliku 'nr_polecenia.txt' dla:'"+szukanyNumer+"'";
+    string wyjError="\n!#Blad w funkcji NumerPolecenia &Nieznaleniono numeru polecenia w pliku 'nr_polecen.txt' dla:'"+szukanyNumer+"'";
     wskTextCtrlOut->append(stringToQString(wyjError));
     cout<<"ERROR!:NumerPolecenia#Nieznaleziono numeru polecenia z pliku \"nr_polecenia.txt\" dla: "<<szukanyNumer<<endl;
     return "";
@@ -192,13 +192,11 @@ void deleteWordsWithFile(string & c, fstream & deleteWords)
 }
 
 
-
-
-
 //Upraszcza wiersz polecenia do formy odpowiedniej, dla uÂ³atwienia odczytania komend
 string DoKommendyPodstawowej(string & c, fstream & slowa, fstream & polecenia, fstream & slowaZmienne, fstream & deleteFindWords, short &error, QTextEdit* wskTextCtrlOut)
 {
-    for(int i=c.size()-1; i>=0; i--)    //Czyszczenie znakÃ³w poza literami(zamienianie ich z duÂ¿ych na maÂ³e) i cyframi
+	//Czyszczenie znakÃ³w poza literami(zamienianie ich z duÂ¿ych na maÂ³e) i cyframi
+    for(int i=c.size()-1; i>=0; i--)    
     {
         if(c[i]>='A' && c[i]<='Z') c[i]=c[i]+32;
         //nieusuwanie określonych znaków i takich w pewnych sytuacjach
@@ -219,9 +217,6 @@ string DoKommendyPodstawowej(string & c, fstream & slowa, fstream & polecenia, f
     if(tmpS[0] =='!') deleteWordsWithFile(c, deleteFindWords);
     while(sZc != " ") //pÃªtla dla sÂ³owa z zdania wprowadzonego przez uÂ¿ytkownika
     {
-
-
-
         if(tmpS != " " && tmpS != ";" && lastSpecialWord[0] == tmpS[0])
         {
             //if(numberOfWordCombination>0)   //jeżeli specjalne słowo czasu i kommeny będą obok siebie
@@ -238,8 +233,10 @@ string DoKommendyPodstawowej(string & c, fstream & slowa, fstream & polecenia, f
 
         }
         else if(numberOfWordCombination>0)
-        {p+=";\r"; //ustawia koncowy znak (koniec wierszu w linux'sie)
-        if(IloscZmiennychPolecenia(p, polecenia, error, wskTextCtrlOut) >0)
+        {
+			// TODO: Inny znak końcowy w linux'sie
+			p+=";"; //ustawia koncowy znak (windows)
+			if(IloscZmiennychPolecenia(p, polecenia, error, wskTextCtrlOut) >0)
             {
 
             for(int i=IloscZmiennychPolecenia(p, polecenia, error, wskTextCtrlOut); i>0; i--) //and znalezione==0 ?!?

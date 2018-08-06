@@ -10,6 +10,8 @@
 using namespace std;
 
 
+QString stringToQString(string s);
+
 void wait(int howLongInMs);
 
 long long StringToInteger(string c);
