@@ -64,9 +64,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ThreadData.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="ICom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="QtGuiApplication1.h">

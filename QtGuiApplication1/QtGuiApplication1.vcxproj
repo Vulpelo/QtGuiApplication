@@ -132,7 +132,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ThreadData.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ICom.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="QtGuiApplication1.cpp" />
   </ItemGroup>

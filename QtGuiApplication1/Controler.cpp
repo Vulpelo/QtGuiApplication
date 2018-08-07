@@ -469,3 +469,45 @@ string Controler::KomendaPoleceniaSystemu(string szukanyNumer)
 void Controler::doCommendButtonPressed() {
 	doCommendFun();
 }
+
+//void Controler::commend(string commendNumber, string commendVariables, string commendMain)
+//{
+//	string commendText;
+//	if (commendNumber == "P000")
+//	{
+//		commendText.insert(0, commendMain + " ");
+//		int nrr = 1;
+//		while (PobSlowZWiersza(commendText, nrr) != "|$|$| " && PobSlowZWiersza(commendText, nrr) != " ") 
+//			nrr++;
+//		if (PobSlowZWiersza(commendText, nrr) != " ")
+//		{
+//			cout << "Błąd polecenia komendy P000; Nieznaleziono miejsca pozycji dla zmiennej " << commendVariables << " !!!" << endl;
+//			return;
+//		}
+//		ZamienianieSlow(commendText, commendVariables, nrr);
+//		char T[100]; 
+//		for (int i = 0; i<100; i++) 
+//			T[i] = '\0';
+//		for (int i = 0; i<commendText.size(); i++) 
+//			T[i] = commendText[i];
+//		system(T);
+//	}
+//	else if (commendNumber == "P001")
+//	{
+//		char T[100]; 
+//		for (int i = 0; i<100; i++) 
+//			T[i] = '\0';
+//		for (int i = 0; i<commendVariables.size(); i++) 
+//			T[i] = commendVariables[i];
+//		system(T);
+//	}
+//	else if (commendNumber == "P002")
+//	{
+//		char T[100]; 
+//		for (int i = 0; i<100; i++)
+//			T[i] = '\0';
+//		for (int i = 0; i<commendMain.size(); i++) 
+//			T[i] = commendMain[i];
+//		system(T);
+//	}
+//}
