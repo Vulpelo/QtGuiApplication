@@ -55,9 +55,6 @@
     <ClCompile Include="GeneratedFiles\qrc_QtGuiApplication1.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="aiFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Controler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,9 +88,6 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_QtGuiApplication1.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aiFunctions.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ICom.h">
       <Filter>Header Files</Filter>

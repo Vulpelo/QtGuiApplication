@@ -113,7 +113,6 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="aiFunctions.cpp" />
     <ClCompile Include="Controler.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_QtGuiApplication1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -162,7 +161,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aiFunctions.h" />
     <ClInclude Include="ICom.h" />
     <CustomBuild Include="Controler.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
