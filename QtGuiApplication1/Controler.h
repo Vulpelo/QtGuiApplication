@@ -52,9 +52,6 @@ private: /*Functions*/
 	//wyszukuje i zwraca kod polecenia dla danego numeru sÂ³owa
 	string NumerPolecenia(string szukanyNumer); 
 
-	//Upraszcza wiersz polecenia do formy odpowiedniej, dla ulatwienia odczytania komend
-	//void commend(string commendNumber, string commendVariables, string commendMain);
-
 	void createThread();
 	void doCommendFun();
 

@@ -307,16 +307,22 @@ long long Controler::StringToInteger(string c)
 	return liczba;
 }
 
-string Controler::PobSlowZWiersza(string c, int nr) //Zwraca wybrane sÂ³owo z zdania string
+string Controler::PobSlowZWiersza(string c, int nr)
 {
 	int pozp = 0, pozk = 0, anr = 0;
 	string s;
 	while (pozk<c.size())
 	{
-		while (c[pozk] != ' ' && c[pozk] != '\0' && c[pozk] != '\n' && c[pozk] != '\r') pozk++;
+		while (c[pozk] != ' ' && c[pozk] != '\0' && c[pozk] != '\n' && c[pozk] != '\r') 
+			pozk++;
 		anr++;
-		if (anr == nr) return s.insert(0, c, pozp, pozk - pozp);
-		else { pozk++; pozp = pozk; };
+		if (anr == nr) 
+			return s.insert(0, c, pozp, pozk - pozp);
+		else 
+		{ 
+			pozk++; 
+			pozp = pozk; 
+		};
 	}
 	cout << "!!!Nie istnieje taki numer slowa!!!\n";
 	return " ";
@@ -327,15 +333,21 @@ string Controler::ZamienianieSlow(string & c, string nowe, int NumerSlowa)
 	int pozp = 0, pozk = 0, anr = 0;
 	while (pozk<c.size())
 	{
-		while (c[pozk] != ' ' && c[pozk] != '\0') pozk++;
+		while (c[pozk] != ' ' && c[pozk] != '\0') 
+			pozk++;
 		anr++;
 		if (anr == NumerSlowa)
 		{
-			if (nowe == "/delete/") return c.erase(pozp, pozk - pozp + 1);
+			if (nowe == "/delete/") 
+				return c.erase(pozp, pozk - pozp + 1);
 			c.erase(pozp, pozk - pozp);
 			return c.insert(pozp, nowe);
 		}
-		else { pozp = pozk + 1; pozk++; };
+		else 
+		{ 
+			pozp = pozk + 1; 
+			pozk++; 
+		};
 	}
 }
 
@@ -469,45 +481,3 @@ string Controler::KomendaPoleceniaSystemu(string szukanyNumer)
 void Controler::doCommendButtonPressed() {
 	doCommendFun();
 }
-
-//void Controler::commend(string commendNumber, string commendVariables, string commendMain)
-//{
-//	string commendText;
-//	if (commendNumber == "P000")
-//	{
-//		commendText.insert(0, commendMain + " ");
-//		int nrr = 1;
-//		while (PobSlowZWiersza(commendText, nrr) != "|$|$| " && PobSlowZWiersza(commendText, nrr) != " ") 
-//			nrr++;
-//		if (PobSlowZWiersza(commendText, nrr) != " ")
-//		{
-//			cout << "Błąd polecenia komendy P000; Nieznaleziono miejsca pozycji dla zmiennej " << commendVariables << " !!!" << endl;
-//			return;
-//		}
-//		ZamienianieSlow(commendText, commendVariables, nrr);
-//		char T[100]; 
-//		for (int i = 0; i<100; i++) 
-//			T[i] = '\0';
-//		for (int i = 0; i<commendText.size(); i++) 
-//			T[i] = commendText[i];
-//		system(T);
-//	}
-//	else if (commendNumber == "P001")
-//	{
-//		char T[100]; 
-//		for (int i = 0; i<100; i++) 
-//			T[i] = '\0';
-//		for (int i = 0; i<commendVariables.size(); i++) 
-//			T[i] = commendVariables[i];
-//		system(T);
-//	}
-//	else if (commendNumber == "P002")
-//	{
-//		char T[100]; 
-//		for (int i = 0; i<100; i++)
-//			T[i] = '\0';
-//		for (int i = 0; i<commendMain.size(); i++) 
-//			T[i] = commendMain[i];
-//		system(T);
-//	}
-//}
