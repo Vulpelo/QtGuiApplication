@@ -75,7 +75,8 @@ private:
 		{
 			commendText.insert(0, data.commendMain + " ");
 			int nrr = 1;
-			while (PobSlowZWiersza(commendText, nrr) != "|$|$|" && PobSlowZWiersza(commendText, nrr) != " ") nrr++;
+			while (PobSlowZWiersza(commendText, nrr) != "|$|$|" && PobSlowZWiersza(commendText, nrr) != " ") 
+				nrr++;
 			if (PobSlowZWiersza(commendText, nrr) == " ")
 			{
 				//cout<< "Błąd polecenia komendy P000; Nieznaleziono miejsca pozycji dla zmiennej "<<commendVariables<<" !!!"<<endl;
