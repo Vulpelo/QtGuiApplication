@@ -1,0 +1,16 @@
+$000 zamknij zakoncz wylacz ; 
+$001 uruchom otworz ; 
+$004 ktora ; 
+$005 godzina ; 
+$006 screenshot screenshota zdjecie skrina screena ; 
+$007 zrob ; 
+$008 nazwa nazwie nazwy ; 
+$009 modyfikowany modyfikowane zmodyfikowane zmodyfikowany ; 
+$00A wielkosc wielkosci rozmiarze rozmiar ; 
+$00B do mniejszej mniejszym ; 
+$00C wiekszy wiekszych wiekszym ponad wiecej ; 
+%000 za po ; 
+%001 o ; 
+$010 przed sprzed ; 
+$011 pomiedzy miedzy ; 
+!000 znajdz wyszukaj podaj odnajdz ; 

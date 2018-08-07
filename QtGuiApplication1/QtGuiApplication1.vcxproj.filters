@@ -55,6 +55,18 @@
     <ClCompile Include="GeneratedFiles\qrc_QtGuiApplication1.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Controler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ThreadData.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ThreadData.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ICom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="QtGuiApplication1.h">
@@ -66,10 +78,19 @@
     <CustomBuild Include="QtGuiApplication1.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="ThreadData.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Controler.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_QtGuiApplication1.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ICom.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
