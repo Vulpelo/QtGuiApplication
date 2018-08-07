@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-//#ifndef CONTROLER_H
-//#define CONTROLER_H
+#ifndef CONTROLER_H
+#define CONTROLER_H
 
 #include <iostream>
 #include <string>
@@ -10,14 +10,11 @@
 #include <cmath>
 #include <ctime>
 
-//#include "QtGuiApplication1.h"
 #include "ThreadData.h"
-
 #include "ICom.h"
 
 class Controler : public ICon
 {
-	//QtGuiApplication1* view;
 	IView *view;
 
 	fstream slowazmienne;
@@ -36,7 +33,7 @@ class Controler : public ICon
 
 	string wordCommendCombination;
 
-private: /*Funkcje*/
+private: /*Functions*/
 	string DoKommendyPodstawowej(string & c);
 	void deleteWordsWithFile(string & c);
 	void wait(int howLongInMs);
@@ -56,7 +53,6 @@ private: /*Funkcje*/
 	string NumerPolecenia(string szukanyNumer); 
 
 	//Upraszcza wiersz polecenia do formy odpowiedniej, dla ulatwienia odczytania komend
-
 	//void commend(string commendNumber, string commendVariables, string commendMain);
 
 	void createThread();
@@ -68,4 +64,4 @@ public:
 	~Controler();
 };
 
-//#endif // CONTROLER_H
+#endif // CONTROLER_H

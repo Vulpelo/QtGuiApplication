@@ -174,6 +174,9 @@ public:
 
         retranslateUi(QtGuiApplication1Class);
 
+        pushButton->setDefault(true);
+
+
         QMetaObject::connectSlotsByName(QtGuiApplication1Class);
     } // setupUi
 
