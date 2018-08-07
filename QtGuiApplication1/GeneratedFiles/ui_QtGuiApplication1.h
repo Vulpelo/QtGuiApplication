@@ -34,11 +34,14 @@ public:
     QWidget *centralWidget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
+    QVBoxLayout *verticalLayout_2;
     QLabel *label;
     QLineEdit *TextCtrlLastCommand;
     QHBoxLayout *horizontalLayout;
     QLabel *label_2;
     QLineEdit *TextCtrlLastCommandEdited;
+    QFrame *line_2;
+    QFrame *line_3;
     QLabel *label_3;
     QLineEdit *textBoxCommand;
     QPushButton *pushButton;
@@ -64,6 +67,9 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setSizeConstraint(QLayout::SetMaximumSize);
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         label = new QLabel(verticalLayoutWidget);
         label->setObjectName(QStringLiteral("label"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -73,13 +79,13 @@ public:
         label->setSizePolicy(sizePolicy);
         label->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
-        verticalLayout->addWidget(label);
+        verticalLayout_2->addWidget(label);
 
         TextCtrlLastCommand = new QLineEdit(verticalLayoutWidget);
         TextCtrlLastCommand->setObjectName(QStringLiteral("TextCtrlLastCommand"));
         TextCtrlLastCommand->setReadOnly(true);
 
-        verticalLayout->addWidget(TextCtrlLastCommand);
+        verticalLayout_2->addWidget(TextCtrlLastCommand);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
@@ -99,7 +105,25 @@ public:
         horizontalLayout->addWidget(TextCtrlLastCommandEdited);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout_2->addLayout(horizontalLayout);
+
+        line_2 = new QFrame(verticalLayoutWidget);
+        line_2->setObjectName(QStringLiteral("line_2"));
+        line_2->setFrameShadow(QFrame::Plain);
+        line_2->setLineWidth(2);
+        line_2->setFrameShape(QFrame::HLine);
+
+        verticalLayout_2->addWidget(line_2);
+
+
+        verticalLayout->addLayout(verticalLayout_2);
+
+        line_3 = new QFrame(verticalLayoutWidget);
+        line_3->setObjectName(QStringLiteral("line_3"));
+        line_3->setFrameShape(QFrame::HLine);
+        line_3->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout->addWidget(line_3);
 
         label_3 = new QLabel(verticalLayoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));

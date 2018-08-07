@@ -1,7 +1,5 @@
 #include "aiFunctions.h"
 
-
-
 using namespace std;
 
 QString stringToQString(string s) {

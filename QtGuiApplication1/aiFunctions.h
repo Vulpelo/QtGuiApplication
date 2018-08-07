@@ -16,10 +16,6 @@ void wait(int howLongInMs);
 
 long long StringToInteger(string c);
 
-/*
-string numeracja(char ACTUAL[],int i)
-
-*/
 string PobSlowZWiersza(string c, int nr); //Zwraca wybrane sÂ³owo z zdania string
 
 string ZamienianieSlow(string & c, string nowe, int NumerSlowa); //podmienia slowo string z slowem w zdaniu string
