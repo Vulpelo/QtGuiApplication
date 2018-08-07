@@ -115,17 +115,18 @@ class QtGuiApplication1 : public QMainWindow
 {
 	Q_OBJECT
 
-public:
-	QtGuiApplication1(QWidget *parent = Q_NULLPTR);
-
 private:
 	Ui::QtGuiApplication1Class ui;
+
+public:
+	QtGuiApplication1(QWidget *parent = Q_NULLPTR);
 
 public:
 	void Execute() 
 	{
 		QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(doCommendFun()));
 	}
+
 public slots:
 	void doCommendFun() 
 	{
@@ -156,7 +157,7 @@ public slots:
 			nrSlowa = 1;
 			string wordCommendCombination = "";
 
-			//komenda "znajdz" "P002"
+			//komenda "znajdz" "P002". (Linux)
 			if (PobSlowZWiersza(c, 1) == "!000")
 			{
 				wordCommendCombination += "find ~";
@@ -194,7 +195,8 @@ public slots:
 							nrSlowa += 2;
 						}
 					}
-					else if (PobSlowZWiersza(c, nrSlowa) == "$009") //wyszukiwanie po dacie modyfikacjii
+					//wyszukiwanie po dacie modyfikacji
+					else if (PobSlowZWiersza(c, nrSlowa) == "$009") 
 					{
 						if (PobSlowZWiersza(c, nrSlowa + 1) == "$010") //przed
 						{
@@ -222,7 +224,8 @@ public slots:
 							}
 						}
 					}
-					else if (PobSlowZWiersza(c, nrSlowa) == "$00A") //wyszukiwanie po rozmiarze
+					//wyszukiwanie po rozmiarze
+					else if (PobSlowZWiersza(c, nrSlowa) == "$00A") 
 					{
 						if (PobSlowZWiersza(c, nrSlowa + 1) == "$00B") //do x
 						{
@@ -334,4 +337,8 @@ public slots:
 	void handleResults()
 	{
 	}
+
+public:
+
+
 };

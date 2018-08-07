@@ -77,7 +77,7 @@ public:
 
         TextCtrlLastCommand = new QLineEdit(verticalLayoutWidget);
         TextCtrlLastCommand->setObjectName(QStringLiteral("TextCtrlLastCommand"));
-        TextCtrlLastCommand->setReadOnly(false);
+        TextCtrlLastCommand->setReadOnly(true);
 
         verticalLayout->addWidget(TextCtrlLastCommand);
 
@@ -94,7 +94,7 @@ public:
 
         TextCtrlLastCommandEdited = new QLineEdit(verticalLayoutWidget);
         TextCtrlLastCommandEdited->setObjectName(QStringLiteral("TextCtrlLastCommandEdited"));
-        TextCtrlLastCommandEdited->setReadOnly(false);
+        TextCtrlLastCommandEdited->setReadOnly(true);
 
         horizontalLayout->addWidget(TextCtrlLastCommandEdited);
 
