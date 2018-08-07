@@ -24,8 +24,12 @@ class QtGuiApplication1 : public QMainWindow, public IView
 	ICon *controler;
 	Ui::QtGuiApplication1Class ui;
 
+private:
+	Ui::QtGuiApplication1Class ui;
+
 public:
 	QtGuiApplication1(QWidget *parent = Q_NULLPTR);
+	void play();
 
 	void Execute(ICon *ncontroler);
 
@@ -36,6 +40,7 @@ public:
 
 public slots:
 	void doCommendFun();
+
 };
 
 #endif // !QTGUIAPPLICATION1_H

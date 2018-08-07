@@ -19,6 +19,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -171,6 +172,8 @@ public:
         statusBar = new QStatusBar(QtGuiApplication1Class);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         QtGuiApplication1Class->setStatusBar(statusBar);
+
+        menuBar->addAction(menuHello_World->menuAction());
 
         retranslateUi(QtGuiApplication1Class);
 
