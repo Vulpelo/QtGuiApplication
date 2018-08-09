@@ -10,11 +10,14 @@
 #include <cmath>
 #include <ctime>
 
+#include "ErrorHandle.h"
 #include "ThreadData.h"
-#include "ICom.h"
+#include "ICon.h"
+#include "IView.h"
 
 class Controler : public ICon
 {
+#pragma region Variables
 	IView *view;
 
 	fstream slowazmienne;
@@ -32,8 +35,9 @@ class Controler : public ICon
 	int myTextW;
 
 	string wordCommendCombination;
+#pragma endregion
 
-private: /*Functions*/
+private:
 	string DoKommendyPodstawowej(string & c);
 	void deleteWordsWithFile(string & c);
 	void wait(int howLongInMs);
@@ -56,7 +60,9 @@ private: /*Functions*/
 	void doCommendFun();
 
 public:
+#pragma region ICon functions
 	void doCommendButtonPressed();
+#pragma endregion
 	Controler(IView *nview);
 	~Controler();
 };

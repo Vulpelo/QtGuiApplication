@@ -4,9 +4,25 @@ Controler::Controler(IView *nview)
 {
 	view = nview;
 	slowazmienne.open("slowa_zmienne.txt");
+	if (!slowazmienne.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
+	}
 	slowapolecen.open("slowa_polecen.txt");
+	if (!slowapolecen.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
+	}
 	nrpolecen.open("nr_polecen.txt");
+	if (!nrpolecen.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"nr_polecen.txt\""));
+	}
 	deleteFindWords.open("wordsFindDelete.txt");
+	if (!deleteFindWords.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
+	}
 }
 
 Controler::~Controler()

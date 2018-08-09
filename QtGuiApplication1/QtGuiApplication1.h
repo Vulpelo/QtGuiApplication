@@ -14,7 +14,8 @@
 #include <fstream>
 
 #include "ThreadData.h"
-#include "ICom.h"
+#include "IView.h"
+#include "ICon.h"
 
 using namespace std;
 
@@ -29,14 +30,17 @@ public:
 
 	void Execute(ICon *ncontroler);
 
+#pragma region IView functions
+	// Returns string that was written in command text edit box
 	string getCommendText();
 	void setLastEditedCommand(string c);
+	// Returns pointer to text edit box wich prints all notifications out
 	QTextEdit* getTextOutCtrl();
 	void addOutText(string t);
+#pragma endregion
 
 public slots:
 	void doCommendFun();
-
 };
 
 #endif // !QTGUIAPPLICATION1_H

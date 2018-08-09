@@ -29,37 +29,48 @@ public:
 		ThreadData data;
 
 private:
-	//Zwraca wybrane slowo z zdania string
+	// Returns a word from string
 	string PobSlowZWiersza(string c, int nr) 
 	{
 		int pozp = 0, pozk = 0, anr = 0;
 		string s;
-		while (pozk<c.size())
+		while (pozk < c.size())
 		{
-			while (c[pozk] != ' ' && c[pozk] != '\0' && c[pozk] != '\n' && c[pozk] != '\r') pozk++;
+			while (c[pozk] != ' ' && c[pozk] != '\0' && c[pozk] != '\n' && c[pozk] != '\r') 
+				pozk++;
 			anr++;
-			if (anr == nr) return s.insert(0, c, pozp, pozk - pozp);
-			else { pozk++; pozp = pozk; };
+			if (anr == nr) 
+				return s.insert(0, c, pozp, pozk - pozp);
+			else 
+			{
+				pozk++; 
+				pozp = pozk; 
+			}
 		}
-		//cout << "!!!Nie istnieje taki numer slowa!!!\n";
 		return " ";
 	}
 
-	//podmienia slowo string z slowem w zdaniu string
+	// Replaces a word in string by a new one
 	string ZamienianieSlow(string & c, string nowe, int NumerSlowa) 
 	{
 		int pozp = 0, pozk = 0, anr = 0;
-		while (pozk<c.size())
+		while (pozk < c.size())
 		{
-			while (c[pozk] != ' ' && c[pozk] != '\0') pozk++;
+			while (c[pozk] != ' ' && c[pozk] != '\0') 
+				pozk++;
 			anr++;
 			if (anr == NumerSlowa)
 			{
-				if (nowe == "/delete/") return c.erase(pozp, pozk - pozp + 1);
+				if (nowe == "/delete/") 
+					return c.erase(pozp, pozk - pozp + 1);
 				c.erase(pozp, pozk - pozp);
 				return c.insert(pozp, nowe);
 			}
-			else { pozp = pozk + 1; pozk++; };
+			else 
+			{ 
+				pozp = pozk + 1; 
+				pozk++; 
+			}
 		}
 	}
 
@@ -84,22 +95,29 @@ private:
 			{
 				ZamienianieSlow(commendText, data.commendVariables, nrr);
 				//commendText.insert(commendText.size(),commendVariables);
-				char T[100]; for (int i = 0; i<100; i++) T[i] = '\0';
-				for (int i = 0; i<commendText.size(); i++) T[i] = commendText[i];
+				char T[100]; 
+				for (int i = 0; i<100; i++) 
+					T[i] = '\0';
+				for (int i = 0; i<commendText.size(); i++) 
+					T[i] = commendText[i];
 				system(T);
 			}
 		}
 		else if (data.commendNumber == "P001")
 		{
-			char T[100]; for (int i = 0; i<100; i++) T[i] = '\0';
-			for (int i = 0; i<data.commendVariables.size(); i++)
+			char T[100]; 
+			for (int i = 0; i < 100; i++) 
+				T[i] = '\0';
+			for (int i = 0; i < data.commendVariables.size(); i++)
 				T[i] = data.commendVariables[i];
 			system(T);
 		}
 		else if (data.commendNumber == "P002")
 		{
-			char T[100]; for (int i = 0; i<100; i++) T[i] = '\0';
-			for (int i = 0; i<data.commendMain.size(); i++) 
+			char T[100]; 
+			for (int i = 0; i < 100; i++) 
+				T[i] = '\0';
+			for (int i = 0; i < data.commendMain.size(); i++) 
 				T[i] = data.commendMain[i]; 
 			//cout << data.commendMain << endl;
 			system(T);
@@ -116,7 +134,8 @@ private:
 			{
 				textout += textline;
 			}
-			QString qtextout; qtextout.fromStdString(textout);
+			QString qtextout; 
+			qtextout.fromStdString(textout);
 
 			data.wskTextCtrlOut->setText(qtextout);
 			wejout.close();
@@ -144,7 +163,6 @@ private:
 
 public:
 	MyThread() {}
-
 
 signals:
 	void resultReady(const QString &s);
