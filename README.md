@@ -1,7 +1,8 @@
-# Simple write commend
+# Simple write command
 ### Wymagane:
 * Visual studio 2015 
 * Qt w wersji 5.6.3 dla microsoft visual studio 2015
+* Dodać zmienną środowiskową 'QTDIR'. O wartości ze ścierzką do katalogu Qt z odpowiednią wersją, np.'C:\Qt\5.6.3\msvc2015'
 ### Aktualnie działające komendy:
 * Zamykanie aplikacji. Zamyka wszystkie aplikacje o podanej nazwie
 ```

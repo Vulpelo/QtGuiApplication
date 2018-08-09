@@ -16,7 +16,6 @@ struct ThreadData
 	string commendNumber;
 	string commendVariables;
 	string commendMain;
-	//ScreenshotNotificationDialog* wxSND;
 	short nrPowiadomienia;
 	long sleepTime;
 	QTextEdit* wskTextCtrlOut;
@@ -167,4 +166,3 @@ public slots:
 };
 
 #endif // !ThreadData_H
-
