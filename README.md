@@ -1,4 +1,4 @@
-# Simple write commend
+# Simple write command
 ### Wymagane:
 * Visual studio 2015 
 * Qt w wersji 5.6.3 dla microsoft visual studio 2015
