@@ -90,4 +90,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="nr_polecen.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="slowa_polecen.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="slowa_zmienne.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="wordsFindDelete.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
