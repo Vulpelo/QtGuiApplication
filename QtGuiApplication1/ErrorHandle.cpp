@@ -14,6 +14,9 @@ string ErrorHandle::getString(ErrorType type, string comment)
 	case FILE_NOT_OPENED:
 		s += "File not opened";
 		break;
+	case COMMAND_CREATE_ERROR:
+		s += "Command creating error";
+		break;
 	default:
 		break;
 	}
@@ -24,7 +27,6 @@ string ErrorHandle::getString(ErrorType type, string comment)
 
 	return s;
 }
-
 
 ErrorHandle::~ErrorHandle()
 {

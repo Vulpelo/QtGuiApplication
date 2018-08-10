@@ -3,11 +3,17 @@
 #ifndef ThreadData_H
 #define ThreadData_H
 
-#include <string>
 #include <QtWidgets/QTextEdit>
 #include <QThread>
+
 #include <fstream>
 #include <iostream>
+#include <string>
+#include <stdio.h>
+#include <windows.h>
+
+#include "ErrorHandle.h"
+#include "IView.h"
 
 using namespace std;
 
@@ -18,7 +24,7 @@ struct ThreadData
 	string commendMain;
 	short nrPowiadomienia;
 	long sleepTime;
-	QTextEdit* wskTextCtrlOut;
+	IView* view;
 };
 
 class MyThread : public QThread
@@ -89,6 +95,7 @@ private:
 				nrr++;
 			if (PobSlowZWiersza(commendText, nrr) == " ")
 			{
+				data.view->addOutText(ErrorHandle::getString(ErrorType::COMMAND_CREATE_ERROR, "P000"));
 				//cout<< "Błąd polecenia komendy P000; Nieznaleziono miejsca pozycji dla zmiennej "<<commendVariables<<" !!!"<<endl;
 			}
 			else
@@ -119,7 +126,6 @@ private:
 				T[i] = '\0';
 			for (int i = 0; i < data.commendMain.size(); i++) 
 				T[i] = data.commendMain[i]; 
-			//cout << data.commendMain << endl;
 			system(T);
 		}
 
@@ -134,10 +140,7 @@ private:
 			{
 				textout += textline;
 			}
-			QString qtextout; 
-			qtextout.fromStdString(textout);
-
-			data.wskTextCtrlOut->setText(qtextout);
+			data.view->addOutText(textout);
 			wejout.close();
 			remove("out.txt");
 		}
@@ -151,8 +154,7 @@ private:
 
 			textout += textline + "/ScreenShot.png\n";
 
-			QString qtextout; qtextout.fromStdString(textout);
-			data.wskTextCtrlOut->setText(qtextout);
+			data.view->addOutText(textout);
 			wejout.close();
 			remove("out.txt");
 			//wskTextCtrlOut->SetValue("Wykonano screenshot'a\nZdjecie zapisano w pliku o nazwie 'ScreenShot.png', w lokalizacji programu.");

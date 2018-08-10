@@ -36,12 +36,11 @@ Controler::~Controler()
 void Controler::doCommendFun()
 {
 	numberOfErrors = 0;
-	nrSlowa = 1;
-	jestCzas = 0;
+	int nrSlowa = 1;
 	polec = 0;/*!*/
 	myTextW = 0; 
 
-	for (int i = 0; i<100; i++)
+	for (int i = 0; i < 100; i++)
 		myText[i] = '\0';
 
 	c= view->getCommendText();
@@ -62,7 +61,8 @@ void Controler::doCommendFun()
 			nrSlowa++;
 			while (PobSlowZWiersza(c, nrSlowa) != " ")
 			{
-				if (PobSlowZWiersza(c, nrSlowa) == "obraz") //wyszukiwanie pliku graficznego
+				//wyszukiwanie pliku graficznego
+				if (PobSlowZWiersza(c, nrSlowa) == "obraz") 
 				{
 					if (PobSlowZWiersza(c, nrSlowa + 1) == "$008")
 					{
@@ -149,20 +149,17 @@ void Controler::doCommendFun()
 			}
 			wordCommendCombination += "> out.txt ;";// gnome-open out.txt;";
 
-			//tworzenie watku
-			MyThread *t = new MyThread();
-
-			t->data.commendMain = wordCommendCombination;
-			t->data.commendNumber = "P002";
-			t->data.commendVariables = "";
-			t->data.sleepTime = 0;
-			t->data.wskTextCtrlOut = view->getTextOutCtrl();
-			t->data.nrPowiadomienia = 1;
-
-			ThreadHandle th;
-			th.setStart(t);
+			ThreadData data;
+			data.commendMain = wordCommendCombination;
+			data.commendNumber = "P002";
+			data.commendVariables = "";
+			data.sleepTime = 0;
+			data.view = view;
+			data.nrPowiadomienia = 1;
 
 			view->addOutText("Wyszukiwanie...");
+
+			createThread(data);
 		}
 		else
 		{
@@ -188,7 +185,16 @@ void Controler::doCommendFun()
 				tekst += PobSlowZWiersza(c, nrSlowa + i);
 			}
 
-			createThread();
+			ThreadData data;
+			data.commendMain = KomendaPoleceniaSystemu(wordCommendCombination);
+			data.commendNumber = NumerPolecenia(wordCommendCombination);
+			data.commendVariables = tekst;
+			data.view = view;
+			// TODO: End of line for linux
+			if (wordCommendCombination == "$007 $006 ;")
+				data.nrPowiadomienia = 2;
+			data.sleepTime = getTimeFromString(c);
+			createThread(data);
 		}
 	}
 }
@@ -367,38 +373,37 @@ string Controler::ZamienianieSlow(string & c, string nowe, int NumerSlowa)
 	}
 }
 
-void Controler::createThread()
+void Controler::createThread(ThreadData ndata)
 {
 	MyThread* t = new MyThread();
 
-	t->data.commendMain = KomendaPoleceniaSystemu(wordCommendCombination);
-	t->data.commendNumber = NumerPolecenia(wordCommendCombination);
-	t->data.commendVariables = tekst;
-	t->data.wskTextCtrlOut = view->getTextOutCtrl();
-
-	// TODO: End of line for linux
-	if (wordCommendCombination == "$007 $006 ;")
-		t->data.nrPowiadomienia = 2;
-
-	// Finding specified time in commend (if there is)
-	nrSlowa = 1;
-	while (jestCzas == 0 && PobSlowZWiersza(c, nrSlowa) != " ")
-	{
-		if (PobSlowZWiersza(c, nrSlowa)[0] == '%')
-			jestCzas = 1;
-		else
-			nrSlowa++;
-	}
-	if (jestCzas)
-	{
-		t->data.sleepTime = TimeInMsec(StringToInteger(PobSlowZWiersza(c, nrSlowa + 1)), PobSlowZWiersza(c, nrSlowa + 2));
-		jestCzas = false;
-	}
-	else
-		t->data.sleepTime = 0;
+	t->data = ndata;
 
 	ThreadHandle th;
 	th.setStart(t);
+}
+
+long Controler::getTimeFromString(string c)
+{
+	bool hasTime = false;
+	long sleepTime = 0;
+	// Finding specified time in commend (if there is)
+	int wordNr = 1;
+	while (!hasTime && PobSlowZWiersza(c, wordNr) != " ")
+	{
+		if (PobSlowZWiersza(c, wordNr)[0] == '%')
+			hasTime = 1;
+		else
+			wordNr++;
+	}
+	if (hasTime)
+	{
+		sleepTime = TimeInMsec(StringToInteger(PobSlowZWiersza(c, wordNr + 1)), PobSlowZWiersza(c, wordNr + 2));
+		hasTime = false;
+	}
+	else
+		sleepTime = 0;
+	return sleepTime;
 }
 
 string Controler::KodSlowaKluczowego(string szukaneSlowo)

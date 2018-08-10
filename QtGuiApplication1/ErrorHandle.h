@@ -4,7 +4,8 @@
 
 
 enum ErrorType{
-	FILE_NOT_OPENED
+	FILE_NOT_OPENED,
+	COMMAND_CREATE_ERROR
 };
 
 class ErrorHandle

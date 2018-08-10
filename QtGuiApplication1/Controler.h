@@ -29,8 +29,6 @@ class Controler : public ICon
 	string c, tekst;
 
 	short numberOfErrors;
-	int nrSlowa;
-	bool jestCzas;
 	short polec;/*!*/
 	int myTextW;
 
@@ -56,7 +54,8 @@ private:
 	//wyszukuje i zwraca kod polecenia dla danego numeru sÂ³owa
 	string NumerPolecenia(string szukanyNumer); 
 
-	void createThread();
+	void createThread(ThreadData data);
+	long getTimeFromString(string c);
 	void doCommendFun();
 
 public:
