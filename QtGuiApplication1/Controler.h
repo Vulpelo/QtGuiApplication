@@ -14,6 +14,7 @@
 #include "ThreadData.h"
 #include "ICon.h"
 #include "IView.h"
+#include "StringMod.h"
 
 class Controler : public ICon
 {
@@ -40,16 +41,9 @@ private:
 	void deleteWordsWithFile(string & c);
 	void wait(int howLongInMs);
 	long long TimeInMsec(int czas, string typCzasu);
-	long long StringToInteger(string c);
 	string KodSlowaKluczowego(string szukaneSlowo);
 	int IloscZmiennychPolecenia(string szukanyNumer);
 	string KomendaPoleceniaSystemu(string szukanyNumer);
-
-	//Zwraca wybrane slowo z wiersza string
-	string PobSlowZWiersza(string c, int nr); 
-
-	//podmienia slowo string z slowem w zdaniu string
-	string ZamienianieSlow(string & c, string nowe, int NumerSlowa); 
 
 	//wyszukuje i zwraca kod polecenia dla danego numeru sÂ³owa
 	string NumerPolecenia(string szukanyNumer); 

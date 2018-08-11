@@ -2,10 +2,9 @@
 
 #include <string>
 
-
 enum ErrorType{
-	FILE_NOT_OPENED,
-	COMMAND_CREATE_ERROR
+	E_FILE_NOT_OPENED,
+	E_COMMAND_CREATE
 };
 
 class ErrorHandle
@@ -15,4 +14,3 @@ public:
 	static std::string getString(ErrorType type, std::string comment = "");
 	~ErrorHandle();
 };
-

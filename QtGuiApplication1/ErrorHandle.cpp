@@ -11,10 +11,10 @@ string ErrorHandle::getString(ErrorType type, string comment)
 	string s = "-!-";
 	switch (type)
 	{
-	case FILE_NOT_OPENED:
-		s += "File not opened";
+	case E_FILE_NOT_OPENED:
+		s += "File not opened. Program won't work properly";
 		break;
-	case COMMAND_CREATE_ERROR:
+	case E_COMMAND_CREATE:
 		s += "Command creating error";
 		break;
 	default:

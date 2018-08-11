@@ -14,6 +14,7 @@
 
 #include "ErrorHandle.h"
 #include "IView.h"
+#include "StringMod.h"
 
 using namespace std;
 
@@ -35,120 +36,27 @@ public:
 		ThreadData data;
 
 private:
-	// Returns a word from string
-	string PobSlowZWiersza(string c, int nr) 
+	string notification(int nr)
 	{
-		int pozp = 0, pozk = 0, anr = 0;
-		string s;
-		while (pozk < c.size())
+		string textout = "";
+		if (nr == 1)
 		{
-			while (c[pozk] != ' ' && c[pozk] != '\0' && c[pozk] != '\n' && c[pozk] != '\r') 
-				pozk++;
-			anr++;
-			if (anr == nr) 
-				return s.insert(0, c, pozp, pozk - pozp);
-			else 
-			{
-				pozk++; 
-				pozp = pozk; 
-			}
-		}
-		return " ";
-	}
-
-	// Replaces a word in string by a new one
-	string ZamienianieSlow(string & c, string nowe, int NumerSlowa) 
-	{
-		int pozp = 0, pozk = 0, anr = 0;
-		while (pozk < c.size())
-		{
-			while (c[pozk] != ' ' && c[pozk] != '\0') 
-				pozk++;
-			anr++;
-			if (anr == NumerSlowa)
-			{
-				if (nowe == "/delete/") 
-					return c.erase(pozp, pozk - pozp + 1);
-				c.erase(pozp, pozk - pozp);
-				return c.insert(pozp, nowe);
-			}
-			else 
-			{ 
-				pozp = pozk + 1; 
-				pozk++; 
-			}
-		}
-	}
-
-	void run() override 
-	{
-		QString result;
-
-		sleep(data.sleepTime);
-
-		string commendText;
-		if (data.commendNumber == "P000")
-		{
-			commendText.insert(0, data.commendMain + " ");
-			int nrr = 1;
-			while (PobSlowZWiersza(commendText, nrr) != "|$|$|" && PobSlowZWiersza(commendText, nrr) != " ") 
-				nrr++;
-			if (PobSlowZWiersza(commendText, nrr) == " ")
-			{
-				data.view->addOutText(ErrorHandle::getString(ErrorType::COMMAND_CREATE_ERROR, "P000"));
-				//cout<< "Błąd polecenia komendy P000; Nieznaleziono miejsca pozycji dla zmiennej "<<commendVariables<<" !!!"<<endl;
-			}
-			else
-			{
-				ZamienianieSlow(commendText, data.commendVariables, nrr);
-				//commendText.insert(commendText.size(),commendVariables);
-				char T[100]; 
-				for (int i = 0; i<100; i++) 
-					T[i] = '\0';
-				for (int i = 0; i<commendText.size(); i++) 
-					T[i] = commendText[i];
-				system(T);
-			}
-		}
-		else if (data.commendNumber == "P001")
-		{
-			char T[100]; 
-			for (int i = 0; i < 100; i++) 
-				T[i] = '\0';
-			for (int i = 0; i < data.commendVariables.size(); i++)
-				T[i] = data.commendVariables[i];
-			system(T);
-		}
-		else if (data.commendNumber == "P002")
-		{
-			char T[100]; 
-			for (int i = 0; i < 100; i++) 
-				T[i] = '\0';
-			for (int i = 0; i < data.commendMain.size(); i++) 
-				T[i] = data.commendMain[i]; 
-			system(T);
-		}
-
-		/*
-		Powiadomienia, Potwierdzenia wykonania
-		*/
-		if (data.nrPowiadomienia == 1)
-		{
-			string textout = "", textline;
+			string textline;
 			ifstream wejout("out.txt");
 			while (getline(wejout, textline))
 			{
 				textout += textline;
 			}
-			data.view->addOutText(textout);
 			wejout.close();
 			remove("out.txt");
+			return textout;
 		}
-		else if (data.nrPowiadomienia == 2)
+		else if (nr == 2)
 		{
 			char T[] = "pwd > out.txt";
 			system(T);
-			string textout = "Wykonano screenshot'a\nZdjecie zapisano w pliku o nazwie 'ScreenShot.png', w lokalizacji programu:\n", textline;
+			string textline;
+			textout = "Wykonano screenshot'a\nZdjecie zapisano w pliku o nazwie 'ScreenShot.png', w lokalizacji programu:\n";
 			ifstream wejout("out.txt");
 			getline(wejout, textline);
 
@@ -158,7 +66,55 @@ private:
 			wejout.close();
 			remove("out.txt");
 			//wskTextCtrlOut->SetValue("Wykonano screenshot'a\nZdjecie zapisano w pliku o nazwie 'ScreenShot.png', w lokalizacji programu.");
+			return textout;
 		}
+		return "";
+	}
+
+	void run() override 
+	{
+		QString result;
+
+		sleep(data.sleepTime);
+
+		string commendText;
+		char T[100];
+		for (int i = 0; i < 100; i++)
+			T[i] = '\0';
+
+		if (data.commendNumber == "P000")
+		{
+			commendText.insert(0, data.commendMain + " ");
+			int nrr = 1;
+			while (StringMod::PobSlowZWiersza(commendText, nrr) != "|$|$|" && StringMod::PobSlowZWiersza(commendText, nrr) != " ")
+				nrr++;
+			if (StringMod::PobSlowZWiersza(commendText, nrr) == " ")
+			{
+				data.view->addOutText(ErrorHandle::getString(ErrorType::E_COMMAND_CREATE, "P000"));
+				//cout<< "Błąd polecenia komendy P000; Nieznaleziono miejsca pozycji dla zmiennej "<<commendVariables<<" !!!"<<endl;
+			}
+			else
+			{
+				StringMod::ZamienianieSlow(commendText, data.commendVariables, nrr);
+				for (int i = 0; i<commendText.size(); i++) 
+					T[i] = commendText[i];
+				system(T);
+			}
+		}
+		else if (data.commendNumber == "P001")
+		{
+			for (int i = 0; i < data.commendVariables.size(); i++)
+				T[i] = data.commendVariables[i];
+			system(T);
+		}
+		else if (data.commendNumber == "P002")
+		{
+			for (int i = 0; i < data.commendMain.size(); i++) 
+				T[i] = data.commendMain[i]; 
+			system(T);
+		}
+
+		notification(data.nrPowiadomienia);
 
 		emit resultReady(result);
 	}

@@ -136,6 +136,7 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="QtGuiApplication1.cpp" />
+    <ClCompile Include="StringMod.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="QtGuiApplication1.h">
@@ -165,6 +166,7 @@
     <ClInclude Include="ErrorHandle.h" />
     <ClInclude Include="ICon.h" />
     <ClInclude Include="IView.h" />
+    <ClInclude Include="StringMod.h" />
     <CustomBuild Include="Controler.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Message>
