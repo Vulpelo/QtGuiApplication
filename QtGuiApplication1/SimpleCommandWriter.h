@@ -3,7 +3,7 @@
 #ifndef QTGUIAPPLICATION1_H
 #define QTGUIAPPLICATION1_H
 
-#include "ui_QtGuiApplication1.h"
+#include "ui_MainWindow.h"
 
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
@@ -19,14 +19,14 @@
 
 using namespace std;
 
-class QtGuiApplication1 : public QMainWindow, public IView
+class SimpleCommandWriter : public QMainWindow, public IView
 {
 	Q_OBJECT
 	ICon *controler;
 	Ui::QtGuiApplication1Class ui;
 
 public:
-	QtGuiApplication1(QWidget *parent = Q_NULLPTR);
+	SimpleCommandWriter(QWidget *parent = Q_NULLPTR);
 
 	void Execute(ICon *ncontroler);
 

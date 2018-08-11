@@ -43,15 +43,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QtGuiApplication1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_QtGuiApplication1.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_QtGuiApplication1.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_QtGuiApplication1.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -70,14 +61,17 @@
     <ClCompile Include="StringMod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SimpleCommandWriter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SimpleCommandWriter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleCommandWriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="QtGuiApplication1.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="QtGuiApplication1.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="QtGuiApplication1.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
@@ -87,11 +81,14 @@
     <CustomBuild Include="Controler.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="MainWindow.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SimpleCommandWriter.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GeneratedFiles\ui_QtGuiApplication1.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="IView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -104,19 +101,8 @@
     <ClInclude Include="StringMod.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="nr_polecen.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="slowa_polecen.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="slowa_zmienne.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="wordsFindDelete.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <ClInclude Include="GeneratedFiles\ui_MainWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
