@@ -1,15 +1,9 @@
 #pragma once
+
 #include <string>
 #include <QtWidgets/QTextEdit>
 
 using namespace std;
-
-class ICon
-{
-public:
-	virtual void doCommendButtonPressed() = 0;
-};
-
 
 class IView {
 public:

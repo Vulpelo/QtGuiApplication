@@ -3,10 +3,50 @@
 Controler::Controler(IView *nview)
 {
 	view = nview;
-	slowazmienne.open("slowa_zmienne.txt");
-	slowapolecen.open("slowa_polecen.txt");
-	nrpolecen.open("nr_polecen.txt");
-	deleteFindWords.open("wordsFindDelete.txt");
+#ifdef linux
+	slowazmienne.open("./Resources/linux/slowa_zmienne.txt");
+	if (!slowazmienne.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
+	}
+	slowapolecen.open("./Resources/linux/slowa_polecen.txt");
+	if (!slowapolecen.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
+	}
+	nrpolecen.open("./Resources/linux/nr_polecen.txt");
+	if (!nrpolecen.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"nr_polecen.txt\""));
+	}
+	deleteFindWords.open("./Resources/linux/wordsFindDelete.txt");
+	if (!deleteFindWords.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
+	}
+#endif
+#ifdef _WIN32
+	slowazmienne.open("./Resources/win32/slowa_zmienne.txt");
+	if (!slowazmienne.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
+	}
+	slowapolecen.open("./Resources/win32/slowa_polecen.txt");
+	if (!slowapolecen.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
+	}
+	nrpolecen.open("./Resources/win32/nr_polecen.txt");
+	if (!nrpolecen.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"nr_polecen.txt\""));
+	}
+	deleteFindWords.open("./Resources/win32/wordsFindDelete.txt");
+	if (!deleteFindWords.good())
+	{
+		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
+	}
+#endif
 }
 
 Controler::~Controler()
@@ -20,12 +60,11 @@ Controler::~Controler()
 void Controler::doCommendFun()
 {
 	numberOfErrors = 0;
-	nrSlowa = 1;
-	jestCzas = 0;
+	int nrSlowa = 1;
 	polec = 0;/*!*/
 	myTextW = 0; 
 
-	for (int i = 0; i<100; i++)
+	for (int i = 0; i < 100; i++)
 		myText[i] = '\0';
 
 	c= view->getCommendText();
@@ -40,13 +79,16 @@ void Controler::doCommendFun()
 		wordCommendCombination = "";
 
 		//komenda "znajdz" "P002". (Linux)
-		if (PobSlowZWiersza(c, 1) == "!000")
+		if (StringMod::PobSlowZWiersza(c, 1) == "!000")
 		{
+			// find logic for linux and windows32
+#ifdef linux
 			wordCommendCombination += "find ~";
 			nrSlowa++;
 			while (PobSlowZWiersza(c, nrSlowa) != " ")
 			{
-				if (PobSlowZWiersza(c, nrSlowa) == "obraz") //wyszukiwanie pliku graficznego
+				//wyszukiwanie pliku graficznego
+				if (PobSlowZWiersza(c, nrSlowa) == "obraz") 
 				{
 					if (PobSlowZWiersza(c, nrSlowa + 1) == "$008")
 					{
@@ -132,29 +174,125 @@ void Controler::doCommendFun()
 				nrSlowa++;
 			}
 			wordCommendCombination += "> out.txt ;";// gnome-open out.txt;";
+#endif
 
-			//tworzenie watku
-			MyThread *t = new MyThread();
+#ifdef _WIN32
+			view->addOutText("-!-FIND COMMAND NOT SUPPORTED ON WINDOWS\n");
+			return;
+			/*
+			wordCommendCombination += "where c:\\";
+			nrSlowa++;
+			while (PobSlowZWiersza(c, nrSlowa) != " ")
+			{
+				//wyszukiwanie pliku graficznego
+				if (PobSlowZWiersza(c, nrSlowa) == "obraz")
+				{
+					if (PobSlowZWiersza(c, nrSlowa + 1) == "$008")
+					{
+						wordCommendCombination += " -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.png'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.bmp'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jpg'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jpeg'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.gif'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jps'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.tiff'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.flif'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.xcf'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.psd'";
+						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.xpm' -a -iname '*'";
+						nrSlowa += 2;
+					}
+					else
+					{
+						wordCommendCombination += " -iname '*.jpg' -o -iname '*.bmp' -o -iname '*.gif' -o -iname '*.jps' -o -iname '*.png' -o -iname '*.jpeg'";
+						wordCommendCombination += " -o -iname '*.tiff' -o -iname '*.flif' -o -iname '*.xcf' -o -iname '*.xpm' -o -iname '*.psd'";
+					}
+				}
+				else if (PobSlowZWiersza(c, nrSlowa) == "plik") //wyszukiwanie jakiegokolwiek typu pliku po nazwie
+				{
+					if (PobSlowZWiersza(c, nrSlowa + 1) == "$008")
+					{
+						wordCommendCombination += " -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*'";
+						nrSlowa += 2;
+					}
+				}
+				//wyszukiwanie po dacie modyfikacji
+				else if (PobSlowZWiersza(c, nrSlowa) == "$009")
+				{
+					if (PobSlowZWiersza(c, nrSlowa + 1) == "$010") //przed
+					{
+						wordCommendCombination += " -not -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
+						nrSlowa += 2;
+					}
+					else if (PobSlowZWiersza(c, nrSlowa + 1) == "%000") //po
+					{
+						wordCommendCombination += " -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
+						nrSlowa += 2;
+					}
+					else if (PobSlowZWiersza(c, nrSlowa + 1) == "$011") // miedzy
+					{
+						if (PobSlowZWiersza(c, nrSlowa + 2) < PobSlowZWiersza(c, nrSlowa + 3))
+						{
+							wordCommendCombination += " -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
+							wordCommendCombination += " -not -newermt " + PobSlowZWiersza(c, nrSlowa + 3);
+							nrSlowa += 3;
+						}
+						else
+						{
+							wordCommendCombination += " -newermt " + PobSlowZWiersza(c, nrSlowa + 3);
+							wordCommendCombination += " -not -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
+							nrSlowa += 3;
+						}
+					}
+				}
+				//wyszukiwanie po rozmiarze
+				else if (PobSlowZWiersza(c, nrSlowa) == "$00A")
+				{
+					if (PobSlowZWiersza(c, nrSlowa + 1) == "$00B") //do x
+					{
+						wordCommendCombination += " -size -" + PobSlowZWiersza(c, nrSlowa + 2) + PobSlowZWiersza(c, nrSlowa + 3);
+						nrSlowa += 3;
+					}
+					else if (PobSlowZWiersza(c, nrSlowa + 1) == "$00C") //wiekszye od x
+					{
+						wordCommendCombination += " -size +" + PobSlowZWiersza(c, nrSlowa + 2) + PobSlowZWiersza(c, nrSlowa + 3);
+						nrSlowa += 3;
+					}
+					else if (PobSlowZWiersza(c, nrSlowa + 1) == "$011")
+					{
+						if (PobSlowZWiersza(c, nrSlowa + 2) > PobSlowZWiersza(c, nrSlowa + 3))
+							wordCommendCombination += " -size +" + PobSlowZWiersza(c, nrSlowa + 2) + PobSlowZWiersza(c, nrSlowa + 4) + "-not -size +" + PobSlowZWiersza(c, nrSlowa + 3) + PobSlowZWiersza(c, nrSlowa + 3);
+						else
+							wordCommendCombination += " -size +" + PobSlowZWiersza(c, nrSlowa + 3) + PobSlowZWiersza(c, nrSlowa + 4) + "-not -size +" + PobSlowZWiersza(c, nrSlowa + 2) + PobSlowZWiersza(c, nrSlowa + 3);
+						nrSlowa += 4;
+					}
+				}
 
-			t->data.commendMain = wordCommendCombination;
-			t->data.commendNumber = "P002";
-			t->data.commendVariables = "";
-			t->data.sleepTime = 0;
-			t->data.wskTextCtrlOut = view->getTextOutCtrl();
-			t->data.nrPowiadomienia = 1;
+				nrSlowa++;
+			}
+			wordCommendCombination += "> out.txt ;";
+			*/
+#endif
 
-			ThreadHandle th;
-			th.setStart(t);
+			ThreadData data;
+			data.commendMain = wordCommendCombination;
+			data.commendNumber = "P002";
+			data.commendVariables = "";
+			data.sleepTime = 0;
+			data.view = view;
+			data.nrPowiadomienia = 1;
 
 			view->addOutText("Wyszukiwanie...");
+
+			createThread(data);
 		}
 		else
 		{
-			while (polec != 2 && PobSlowZWiersza(c, nrSlowa) != " ")
+			while (polec != 2 && StringMod::PobSlowZWiersza(c, nrSlowa) != " ")
 			{
-				if (PobSlowZWiersza(c, nrSlowa)[0] == '$')
+				if (StringMod::PobSlowZWiersza(c, nrSlowa)[0] == '$')
 				{
-					wordCommendCombination += PobSlowZWiersza(c, nrSlowa) + " ";
+					wordCommendCombination += StringMod::PobSlowZWiersza(c, nrSlowa) + " ";
 					nrSlowa++;
 					polec = 1;
 				}
@@ -169,10 +307,19 @@ void Controler::doCommendFun()
 			tekst = ""; wordCommendCombination += ";";
 			for (int i = 0; i < IloscZmiennychPolecenia(wordCommendCombination); i++)
 			{
-				tekst += PobSlowZWiersza(c, nrSlowa + i);
+				tekst += StringMod::PobSlowZWiersza(c, nrSlowa + i);
 			}
 
-			createThread();
+			ThreadData data;
+			data.commendMain = KomendaPoleceniaSystemu(wordCommendCombination);
+			data.commendNumber = NumerPolecenia(wordCommendCombination);
+			data.commendVariables = tekst;
+			data.view = view;
+			// TODO: End of line for linux
+			if (wordCommendCombination == "$007 $006 ;")
+				data.nrPowiadomienia = 2;
+			data.sleepTime = getTimeFromString(c);
+			createThread(data);
 		}
 	}
 }
@@ -194,7 +341,7 @@ string Controler::DoKommendyPodstawowej(string & c)
 	int wordNr = 1, g = 1, numberOfWordCombination = 0;
 	bool znalezione = false;
 
-	sZc = PobSlowZWiersza(c, wordNr);    //sÂ³owo z wiersza c
+	sZc = StringMod::PobSlowZWiersza(c, wordNr);    //sÂ³owo z wiersza c
 	tmpS = KodSlowaKluczowego(sZc);
 	lastSpecialWord = tmpS;
 
@@ -206,7 +353,7 @@ string Controler::DoKommendyPodstawowej(string & c)
 		{
 			lastSpecialWord = tmpS;
 			g = 1; nrpolecen.clear(); nrpolecen.seekg(0);
-			ZamienianieSlow(c, tmpS, wordNr);
+			StringMod::ZamienianieSlow(c, tmpS, wordNr);
 			numberOfWordCombination++;
 			p += tmpS + " ";
 		}
@@ -219,14 +366,14 @@ string Controler::DoKommendyPodstawowej(string & c)
 				for (int i = IloscZmiennychPolecenia(p); i>0; i--) //and znalezione==0 ?!?
 				{
 					//Sprawdzanie sÂ³Ã³w z innego pliku (SÂ³owa_zmienne.txt)
-					sZc = PobSlowZWiersza(c, wordNr); slowazmienne.clear(); slowazmienne.seekg(0);
+					sZc = StringMod::PobSlowZWiersza(c, wordNr); slowazmienne.clear(); slowazmienne.seekg(0);
 					while (znalezione == false && getline(slowazmienne, wierszSlowaZmienne))
 					{
-						while (PobSlowZWiersza(wierszSlowaZmienne, g) != " " && znalezione == false)
+						while (StringMod::PobSlowZWiersza(wierszSlowaZmienne, g) != " " && znalezione == false)
 						{
-							if (sZc == PobSlowZWiersza(wierszSlowaZmienne, g))
+							if (sZc == StringMod::PobSlowZWiersza(wierszSlowaZmienne, g))
 							{
-								ZamienianieSlow(c, PobSlowZWiersza(wierszSlowaZmienne, 1), wordNr); znalezione = true;
+								StringMod::ZamienianieSlow(c, StringMod::PobSlowZWiersza(wierszSlowaZmienne, 1), wordNr); znalezione = true;
 							}
 							g++;
 						}
@@ -247,10 +394,10 @@ string Controler::DoKommendyPodstawowej(string & c)
 				numberOfWordCombination = 0;
 			}
 		}
-		else ZamienianieSlow(c, "/delete/", wordNr);
+		else StringMod::ZamienianieSlow(c, "/delete/", wordNr);
 
 		wordNr++; g = 1; znalezione = false;
-		sZc = PobSlowZWiersza(c, wordNr);
+		sZc = StringMod::PobSlowZWiersza(c, wordNr);
 		tmpS = KodSlowaKluczowego(sZc);
 		if (numberOfWordCombination == 0)
 			lastSpecialWord = tmpS;
@@ -267,7 +414,7 @@ void Controler::deleteWordsWithFile(string & c)
 	string sZc, sZdeleteWords;
 	int nrSlowa = 1;
 	bool found = false;
-	sZc = PobSlowZWiersza(c, nrSlowa);
+	sZc = StringMod::PobSlowZWiersza(c, nrSlowa);
 	while (sZc != " ")
 	{
 		deleteFindWords.clear(); deleteFindWords.seekg(0);
@@ -276,13 +423,13 @@ void Controler::deleteWordsWithFile(string & c)
 		{
 			if (sZc == sZdeleteWords)
 			{
-				ZamienianieSlow(c, "/delete/", nrSlowa);
+				StringMod::ZamienianieSlow(c, "/delete/", nrSlowa);
 				found = true;
 			}
 			deleteFindWords >> sZdeleteWords;
 		}
 		nrSlowa++;
-		sZc = PobSlowZWiersza(c, nrSlowa);
+		sZc = StringMod::PobSlowZWiersza(c, nrSlowa);
 		found = false;
 	}
 }
@@ -295,94 +442,37 @@ void Controler::wait(int howLongInMs)
 	return;
 }
 
-long long Controler::StringToInteger(string c)
-{
-	int liczba = 0, tmp = 0;
-	for (int i = c.size() - 1, j = 1; i >= 0; i--, j *= 10)
-	{
-		tmp = c[i] - 48;
-		tmp = tmp*j;
-		liczba += tmp;
-	}
-	return liczba;
-}
-
-string Controler::PobSlowZWiersza(string c, int nr)
-{
-	int pozp = 0, pozk = 0, anr = 0;
-	string s;
-	while (pozk<c.size())
-	{
-		while (c[pozk] != ' ' && c[pozk] != '\0' && c[pozk] != '\n' && c[pozk] != '\r') 
-			pozk++;
-		anr++;
-		if (anr == nr) 
-			return s.insert(0, c, pozp, pozk - pozp);
-		else 
-		{ 
-			pozk++; 
-			pozp = pozk; 
-		};
-	}
-	cout << "!!!Nie istnieje taki numer slowa!!!\n";
-	return " ";
-}
-
-string Controler::ZamienianieSlow(string & c, string nowe, int NumerSlowa)
-{
-	int pozp = 0, pozk = 0, anr = 0;
-	while (pozk<c.size())
-	{
-		while (c[pozk] != ' ' && c[pozk] != '\0') 
-			pozk++;
-		anr++;
-		if (anr == NumerSlowa)
-		{
-			if (nowe == "/delete/") 
-				return c.erase(pozp, pozk - pozp + 1);
-			c.erase(pozp, pozk - pozp);
-			return c.insert(pozp, nowe);
-		}
-		else 
-		{ 
-			pozp = pozk + 1; 
-			pozk++; 
-		};
-	}
-}
-
-void Controler::createThread()
+void Controler::createThread(ThreadData ndata)
 {
 	MyThread* t = new MyThread();
 
-	t->data.commendMain = KomendaPoleceniaSystemu(wordCommendCombination);
-	t->data.commendNumber = NumerPolecenia(wordCommendCombination);
-	t->data.commendVariables = tekst;
-	t->data.wskTextCtrlOut = view->getTextOutCtrl();
-
-	// TODO: End of line for linux
-	if (wordCommendCombination == "$007 $006 ;")
-		t->data.nrPowiadomienia = 2;
-
-	// Finding specified time in commend (if there is)
-	nrSlowa = 1;
-	while (jestCzas == 0 && PobSlowZWiersza(c, nrSlowa) != " ")
-	{
-		if (PobSlowZWiersza(c, nrSlowa)[0] == '%')
-			jestCzas = 1;
-		else
-			nrSlowa++;
-	}
-	if (jestCzas)
-	{
-		t->data.sleepTime = TimeInMsec(StringToInteger(PobSlowZWiersza(c, nrSlowa + 1)), PobSlowZWiersza(c, nrSlowa + 2));
-		jestCzas = false;
-	}
-	else
-		t->data.sleepTime = 0;
+	t->data = ndata;
 
 	ThreadHandle th;
 	th.setStart(t);
+}
+
+long Controler::getTimeFromString(string c)
+{
+	bool hasTime = false;
+	long sleepTime = 0;
+	// Finding specified time in commend (if there is)
+	int wordNr = 1;
+	while (!hasTime && StringMod::PobSlowZWiersza(c, wordNr) != " ")
+	{
+		if (StringMod::PobSlowZWiersza(c, wordNr)[0] == '%')
+			hasTime = 1;
+		else
+			wordNr++;
+	}
+	if (hasTime)
+	{
+		sleepTime = TimeInMsec(StringMod::StringToInteger(StringMod::PobSlowZWiersza(c, wordNr + 1)), StringMod::PobSlowZWiersza(c, wordNr + 2));
+		hasTime = false;
+	}
+	else
+		sleepTime = 0;
+	return sleepTime;
 }
 
 string Controler::KodSlowaKluczowego(string szukaneSlowo)
@@ -393,12 +483,12 @@ string Controler::KodSlowaKluczowego(string szukaneSlowo)
 
 	while (getline(slowapolecen, p))
 	{
-		while (PobSlowZWiersza(p, g + 1) != " ")  //SÂ³owo z wiersza z pliku
+		while (StringMod::PobSlowZWiersza(p, g + 1) != " ")  //SÂ³owo z wiersza z pliku
 		{
 			//Druga pÃªtla ktÃ³ra zamienia sÂ³owa zmiennych na sÂ³owa podstawowe(o ile istniejÂ±;sÂ± zapisane w pliku sÂ³owa_zmienne.txt)
-			if (szukaneSlowo == PobSlowZWiersza(p, g + 1))
+			if (szukaneSlowo == StringMod::PobSlowZWiersza(p, g + 1))
 			{
-				return PobSlowZWiersza(p, 1);
+				return StringMod::PobSlowZWiersza(p, 1);
 			};
 			g++;
 		}
@@ -422,7 +512,7 @@ int Controler::IloscZmiennychPolecenia(string szukanyNumer)
 		{
 			getline(nrpolecen, wiersz);
 			nrpolecen.clear(); nrpolecen.seekg(0);
-			return StringToInteger(PobSlowZWiersza(wiersz, 1));
+			return StringMod::StringToInteger(StringMod::PobSlowZWiersza(wiersz, 1));
 		}//PobSlowZWiersza(wiersz,2);
 		else getline(nrpolecen, wiersz);
 	}
@@ -449,7 +539,7 @@ string Controler::NumerPolecenia(string szukanyNumer)
 		{
 			getline(nrpolecen, wiersz);
 			nrpolecen.clear(); nrpolecen.seekg(0);
-			return PobSlowZWiersza(wiersz, 2);
+			return StringMod::PobSlowZWiersza(wiersz, 2);
 		}
 		else getline(nrpolecen, wiersz);
 		numberOfErrors++;
@@ -467,9 +557,9 @@ string Controler::KomendaPoleceniaSystemu(string szukanyNumer)
 		{
 			getline(nrpolecen, wiersz);
 			int nr = 3;
-			while (PobSlowZWiersza(wiersz, nr) != ";" && PobSlowZWiersza(wiersz, nr) != " ")
+			while (StringMod::PobSlowZWiersza(wiersz, nr) != ";" && StringMod::PobSlowZWiersza(wiersz, nr) != " ")
 			{
-				wierszWyj += PobSlowZWiersza(wiersz, nr); nr++;
+				wierszWyj += StringMod::PobSlowZWiersza(wiersz, nr); nr++;
 				wierszWyj += " ";
 			}
 		}

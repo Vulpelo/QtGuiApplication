@@ -1,0 +1,13 @@
+firefox firefox.exe firefoxa ; 
+chrome chrome.exe ; 
+leafpad notepad.exe notepad notatnik ; 
+explorer explorer.exe explorera ; 
+min minutach minut minute ; 
+h godzinach godzinie ; 
+sek sekund sekundach sekundy sekunde ; 
+obraz obrazy obrazek obrazki obrazeczki graficzne grafiki ; 
+tekst tekstowy ; 
+plik pliki ; 
+M mb megabajt megabajtow megabajta ; 
+k kb kilobajtow kilobajt kilobajta ; 
+G gigabajtow gb gigabajt gigabajta ; 
