@@ -20,16 +20,48 @@ long long StringMod::StringToInteger(string c)
 	return liczba;
 }
 
+int StringMod::endPositionOfWordInString(string c, int start)
+{
+	int pozk = start;
+	bool ignoreNextSeparator = false;
+	while (c[pozk] != '\0' && c[pozk] != '\n' && c[pozk] != '\r')
+	{
+		// if there isn't space between words
+		if (c[pozk] != ' ')
+		{
+			pozk++;
+			if (c[pozk] == '\"')
+			{
+				if (ignoreNextSeparator) // closing ..."
+					ignoreNextSeparator = false;
+				else // opening "...
+					ignoreNextSeparator = true;
+			}
+		}
+		// if there is space between words
+		else {
+			// if words are in quotes "..."
+			if (ignoreNextSeparator) {
+				pozk++;
+			}
+			// else end loop
+			else
+				break;
+		}
+	}
+	return pozk;
+}
+
 string StringMod::PobSlowZWiersza(string c, int nr)
 {
-	int pozp = 0, pozk = 0, anr = 0;
+	int pozp = 0, pozk = 0, actualNr = 0;
+	bool ignoreNextSeparator = false;
 	string s;
 	while (pozk<c.size())
 	{
-		while (c[pozk] != ' ' && c[pozk] != '\0' && c[pozk] != '\n' && c[pozk] != '\r')
-			pozk++;
-		anr++;
-		if (anr == nr)
+		pozk = endPositionOfWordInString(c, pozp);
+		actualNr++;
+		if (actualNr == nr)
 			return s.insert(0, c, pozp, pozk - pozp);
 		else
 		{
@@ -43,10 +75,10 @@ string StringMod::PobSlowZWiersza(string c, int nr)
 string StringMod::ZamienianieSlow(string & c, string nowe, int NumerSlowa)
 {
 	int pozp = 0, pozk = 0, anr = 0;
+	bool ignoreNextSeparator = false;
 	while (pozk<c.size())
 	{
-		while (c[pozk] != ' ' && c[pozk] != '\0')
-			pozk++;
+		pozk = endPositionOfWordInString(c, pozp);
 		anr++;
 		if (anr == NumerSlowa)
 		{
