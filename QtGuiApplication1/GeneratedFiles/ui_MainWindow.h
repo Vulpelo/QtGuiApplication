@@ -19,6 +19,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -31,6 +32,7 @@ QT_BEGIN_NAMESPACE
 class Ui_QtGuiApplication1Class
 {
 public:
+    QAction *actionSynonim;
     QWidget *centralWidget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
@@ -48,6 +50,7 @@ public:
     QFrame *line;
     QTextEdit *TextCtrlOut;
     QMenuBar *menuBar;
+    QMenu *menuDodaj;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *QtGuiApplication1Class)
@@ -56,6 +59,8 @@ public:
             QtGuiApplication1Class->setObjectName(QStringLiteral("QtGuiApplication1Class"));
         QtGuiApplication1Class->resize(462, 473);
         QtGuiApplication1Class->setMinimumSize(QSize(462, 473));
+        actionSynonim = new QAction(QtGuiApplication1Class);
+        actionSynonim->setObjectName(QStringLiteral("actionSynonim"));
         centralWidget = new QWidget(QtGuiApplication1Class);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayoutWidget = new QWidget(centralWidget);
@@ -167,10 +172,15 @@ public:
         menuBar = new QMenuBar(QtGuiApplication1Class);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 462, 26));
+        menuDodaj = new QMenu(menuBar);
+        menuDodaj->setObjectName(QStringLiteral("menuDodaj"));
         QtGuiApplication1Class->setMenuBar(menuBar);
         statusBar = new QStatusBar(QtGuiApplication1Class);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         QtGuiApplication1Class->setStatusBar(statusBar);
+
+        menuBar->addAction(menuDodaj->menuAction());
+        menuDodaj->addAction(actionSynonim);
 
         retranslateUi(QtGuiApplication1Class);
 
@@ -183,12 +193,14 @@ public:
     void retranslateUi(QMainWindow *QtGuiApplication1Class)
     {
         QtGuiApplication1Class->setWindowTitle(QApplication::translate("QtGuiApplication1Class", "QtGuiApplication1", Q_NULLPTR));
+        actionSynonim->setText(QApplication::translate("QtGuiApplication1Class", "Synonim", Q_NULLPTR));
         label->setText(QApplication::translate("QtGuiApplication1Class", "Ostatnio wpisana komenda", Q_NULLPTR));
         label_2->setText(QApplication::translate("QtGuiApplication1Class", "Zedytowana komenda", Q_NULLPTR));
         TextCtrlLastCommandEdited->setText(QString());
         label_3->setText(QApplication::translate("QtGuiApplication1Class", "Wpisywana komenda", Q_NULLPTR));
         textBoxCommand->setText(QString());
         pushButton->setText(QApplication::translate("QtGuiApplication1Class", "Wykonaj", Q_NULLPTR));
+        menuDodaj->setTitle(QApplication::translate("QtGuiApplication1Class", "Dodaj", Q_NULLPTR));
     } // retranslateUi
 
 };

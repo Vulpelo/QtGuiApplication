@@ -180,8 +180,20 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuDodaj">
+    <property name="title">
+     <string>Dodaj</string>
+    </property>
+    <addaction name="actionSynonim"/>
+   </widget>
+   <addaction name="menuDodaj"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionSynonim">
+   <property name="text">
+    <string>Synonim</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
