@@ -6,10 +6,17 @@ SimpleCommandWriter::SimpleCommandWriter(QWidget *parent)
 	ui.setupUi(this);
 }
 
+SimpleCommandWriter::~SimpleCommandWriter()
+{
+	//delete controler;
+}
+
 void SimpleCommandWriter::Execute(ICon *ncontroler)
 {
 	controler = ncontroler;
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(doCommendFun()));
+	QObject::connect(ui.actionSynonim, SIGNAL(triggered()), this, SLOT(actionSynonimPressed()));
+
 }
 
 string SimpleCommandWriter::getCommendText() {
@@ -33,6 +40,17 @@ void SimpleCommandWriter::addOutText(string t) {
 	ui.TextCtrlOut->append(qt.fromStdString(t));
 }
 
+
 void SimpleCommandWriter::doCommendFun() {
 	controler->doCommendButtonPressed();
+}
+
+void SimpleCommandWriter::actionSynonimPressed() {
+	AddSynonim *newWindow = new AddSynonim;
+
+	newWindow->Execute(controler->getIAddSynonimCtr());
+	newWindow->show();
+
+
+	//controler->actionSynonimPressed();
 }

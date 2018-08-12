@@ -10,6 +10,7 @@ enum ErrorType{
 class ErrorHandle
 {
 public:
+
 	ErrorHandle();
 	static std::string getString(ErrorType type, std::string comment = "");
 	~ErrorHandle();

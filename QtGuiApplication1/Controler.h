@@ -15,16 +15,20 @@
 #include "ICon.h"
 #include "IView.h"
 #include "StringMod.h"
+#include "AddSynonimCont.h"
+
+#include "Resources.h"
+
 
 class Controler : public ICon
 {
 #pragma region Variables
 	IView *view;
 
-	fstream slowazmienne;
-	fstream slowapolecen;
-	fstream nrpolecen;
-	fstream deleteFindWords;
+	//fstream slowazmienne;
+	//fstream slowapolecen;
+	//fstream nrpolecen;
+	//fstream deleteFindWords;
 
 	char myText[100];
 	string c, tekst;
@@ -55,6 +59,7 @@ private:
 public:
 #pragma region ICon functions
 	void doCommendButtonPressed();
+	IAddSynonimContr *getIAddSynonimCtr();
 #pragma endregion
 	Controler(IView *nview);
 	~Controler();

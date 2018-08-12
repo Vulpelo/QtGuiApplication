@@ -91,6 +91,12 @@
     <ClCompile Include="SimpleCommandWriter.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="AddSynonimCont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="QtGuiApplication1.qrc">
@@ -133,6 +139,18 @@
     </ClInclude>
     <ClInclude Include="StringMod.h">
       <Filter>Header Files\ExtClass</Filter>
+    </ClInclude>
+    <ClInclude Include="IAddSynonimContr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IAddSynonimView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddSynonimCont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

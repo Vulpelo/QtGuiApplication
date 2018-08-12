@@ -5,6 +5,8 @@
 
 #include "ui_MainWindow.h"
 
+#include "addsynonim.h"
+
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QMessageBox>
@@ -16,6 +18,7 @@
 #include "ThreadData.h"
 #include "IView.h"
 #include "ICon.h"
+#include "IAddSynonimContr.h"
 
 using namespace std;
 
@@ -27,6 +30,7 @@ class SimpleCommandWriter : public QMainWindow, public IView
 
 public:
 	SimpleCommandWriter(QWidget *parent = Q_NULLPTR);
+	~SimpleCommandWriter();
 
 	void Execute(ICon *ncontroler);
 
@@ -40,6 +44,7 @@ public:
 #pragma endregion
 
 public slots:
+	void actionSynonimPressed();
 	void doCommendFun();
 };
 
