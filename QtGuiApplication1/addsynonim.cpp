@@ -7,7 +7,7 @@ AddSynonim::AddSynonim(QWidget * parent) : QWidget(parent) {
 void AddSynonim::Execute(IAddSynonimContr * nctr)
 {
 	ctr = nctr;
-	QObject::connect(ui.addButton, SIGNAL(clicked()), this, SLOT(addButtonClicked()));
+	//QObject::connect(ui.addButton, SIGNAL(clicked()), this, SLOT(addButtonClicked()));
 
 }
 
