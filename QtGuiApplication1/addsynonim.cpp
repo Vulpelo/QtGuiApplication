@@ -13,6 +13,7 @@ void AddSynonim::Execute(IAddSynonimContr * nctr)
 
 void AddSynonim::addButtonClicked() {
 	ctr->addButtonPressed(ui.mainWordLineEdit->text().toStdString(), ui.newWordLineEdit->text().toStdString());
+	close();
 }
 
 AddSynonim::~AddSynonim() {

@@ -4,6 +4,11 @@ StringMod::StringMod()
 {
 }
 
+char * StringMod::toChar(string c)
+{
+	return nullptr;
+}
+
 StringMod::~StringMod()
 {
 }
@@ -70,6 +75,27 @@ string StringMod::PobSlowZWiersza(string c, int nr)
 		};
 	}
 	return " ";
+}
+
+bool StringMod::stringContainWord(string c, string word)
+{
+	int pozp = 0, pozk = 0, actualNr = 0;
+	bool ignoreNextSeparator = false;
+	string s;
+	while (pozk < c.size())
+	{
+		pozk = endPositionOfWordInString(c, pozp);
+		actualNr++;
+		if (word == s.insert(0, c, pozp, pozk - pozp))
+			return true;
+		else
+		{
+			s = "";
+			pozk++;
+			pozp = pozk;
+		};
+	}
+	return false;
 }
 
 string StringMod::ZamienianieSlow(string & c, string nowe, int NumerSlowa)

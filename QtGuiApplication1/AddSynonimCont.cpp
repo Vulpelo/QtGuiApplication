@@ -8,7 +8,7 @@ AddSynonimCont::AddSynonimCont()
 
 void AddSynonimCont::addButtonPressed(string word, string newWord)
 {
-	Resources::slowazmienne.clear(); Resources::slowazmienne.seekp(0, ios_base::beg);
+	Resources::begining_slowazmienne();
 	string ccc, AddingWord, MainWord;
 	bool znaleziono = false; int nrSlowa = 1;
 	AddingWord = newWord;
@@ -24,31 +24,48 @@ void AddSynonimCont::addButtonPressed(string word, string newWord)
 			if (ccc == AddingWord)
 				znaleziono = true;
 		}
-		if (znaleziono == false)
+		if (!znaleziono)
 		{
-			Resources::slowazmienne.clear(); Resources::slowazmienne.seekp(0, ios_base::beg);
-			while (Resources::slowazmienne >> ccc && znaleziono == false)
+			int nrOfLine = 0;
+			//begining of file
+			Resources::begining_slowazmienne();
+			while (!Resources::slowazmienne.eof() && znaleziono == false)
 			{
-				if (ccc == MainWord)
-				{
-					znaleziono = true;
-					//slowazmienne<<AddingWord;
-				}
-				//nrSlowa++;
+				getline(Resources::slowazmienne, ccc);
+				nrOfLine++;
+				znaleziono = StringMod::stringContainWord(ccc, MainWord);
 			}
-			if (znaleziono == true)
+			if (znaleziono)
 			{
-				Resources::slowazmienne >> ccc;
-				while (ccc != ";")
-					Resources::slowazmienne >> ccc;
-				// position in file where word should be added
-				Resources::slowazmienne.seekp(-1, ios_base::cur);
-				// TODO: End line for linux (\r)
-				Resources::slowazmienne << AddingWord << " ; \n";
-				ErrorHandle::message(ErrorType::MESSAGE, "Dodano nowy synonim do istniej¹cego s³owa");
+				ccc.insert(ccc.size()-2, AddingWord + " ");
+
+				fstream tmpout;
+				tmpout.open((Resources::filesPath + "tmp.txt").c_str(), 'w');
+
+				Resources::begining_slowazmienne();
+				{
+					string tmp;
+					int i = 0;
+					while (getline(Resources::slowazmienne, tmp)) {
+						i++;
+						if (nrOfLine != i) {
+							tmpout << (tmp + "\r\n");
+						}
+						else
+							tmpout << (ccc + "\r\n");
+					}
+				}
+				tmpout.close();		
+
+				Resources::exit();
+				remove((Resources::filesPath + "slowa_zmienne.txt").c_str());
+				rename((Resources::filesPath + "tmp.txt").c_str(), (Resources::filesPath + "slowa_zmienne.txt").c_str());
+				Resources::initialize();
+				
+				ErrorHandle::message(ErrorType::MESSAGE, "Dodano nowy synonim");
 			}
 			else
-				ErrorHandle::message(ErrorType::W_ENTERED_DATA, "W spisie Nieistnieje podane podstawowe s³owo");
+				ErrorHandle::message(ErrorType::W_ENTERED_DATA, "W spisie nieistnieje podane podstawowe s³owo");
 		}
 		else
 			ErrorHandle::message(ErrorType::W_ENTERED_DATA, "Juz taki synonim zostal dodany");

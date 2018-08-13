@@ -5,6 +5,7 @@
 #include "ErrorHandle.h"
 
 #include <string>
+#include "StringMod.h"
 #include "Resources.h"
 
 using namespace std;
