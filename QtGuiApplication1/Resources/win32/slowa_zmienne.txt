@@ -1,6 +1,6 @@
 C:/"Program Files"/"Mozilla Firefox"/firefox.exe firefox.exe firefox firefoxa ; 
 chrome.exe chrome ; 
-notepad.exe notepad notatnik leafpad ; 
+notepad.exe notepad notatnik leafpad note ; 
 explorer.exe explorer explorera ; 
 min minutach minut minute ; 
 h godzinach godzinie ; 

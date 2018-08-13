@@ -3,7 +3,9 @@
 #ifndef QTGUIAPPLICATION1_H
 #define QTGUIAPPLICATION1_H
 
-#include "ui_QtGuiApplication1.h"
+#include "ui_MainWindow.h"
+
+#include "addsynonim.h"
 
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
@@ -16,17 +18,19 @@
 #include "ThreadData.h"
 #include "IView.h"
 #include "ICon.h"
+#include "IAddSynonimContr.h"
 
 using namespace std;
 
-class QtGuiApplication1 : public QMainWindow, public IView
+class SimpleCommandWriter : public QMainWindow, public IView
 {
 	Q_OBJECT
 	ICon *controler;
 	Ui::QtGuiApplication1Class ui;
 
 public:
-	QtGuiApplication1(QWidget *parent = Q_NULLPTR);
+	SimpleCommandWriter(QWidget *parent = Q_NULLPTR);
+	~SimpleCommandWriter();
 
 	void Execute(ICon *ncontroler);
 
@@ -40,6 +44,7 @@ public:
 #pragma endregion
 
 public slots:
+	void actionSynonimPressed();
 	void doCommendFun();
 };
 

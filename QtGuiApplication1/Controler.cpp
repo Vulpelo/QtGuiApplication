@@ -1,60 +1,60 @@
 ﻿#include "Controler.h"
 
+using namespace res;
+
 Controler::Controler(IView *nview)
 {
 	view = nview;
-#ifdef linux
-	slowazmienne.open("./Resources/linux/slowa_zmienne.txt");
-	if (!slowazmienne.good())
-	{
-		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
-	}
-	slowapolecen.open("./Resources/linux/slowa_polecen.txt");
-	if (!slowapolecen.good())
-	{
-		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
-	}
-	nrpolecen.open("./Resources/linux/nr_polecen.txt");
-	if (!nrpolecen.good())
-	{
-		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"nr_polecen.txt\""));
-	}
-	deleteFindWords.open("./Resources/linux/wordsFindDelete.txt");
-	if (!deleteFindWords.good())
-	{
-		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
-	}
-#endif
-#ifdef _WIN32
-	slowazmienne.open("./Resources/win32/slowa_zmienne.txt");
-	if (!slowazmienne.good())
-	{
-		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
-	}
-	slowapolecen.open("./Resources/win32/slowa_polecen.txt");
-	if (!slowapolecen.good())
-	{
-		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
-	}
-	nrpolecen.open("./Resources/win32/nr_polecen.txt");
-	if (!nrpolecen.good())
-	{
-		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"nr_polecen.txt\""));
-	}
-	deleteFindWords.open("./Resources/win32/wordsFindDelete.txt");
-	if (!deleteFindWords.good())
-	{
-		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
-	}
-#endif
+	Resources::initialize();
+//#ifdef linux
+//	slowazmienne.open("./Resources/linux/slowa_zmienne.txt");
+//	if (!slowazmienne.good())
+//	{
+//		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
+//	}
+//	slowapolecen.open("./Resources/linux/slowa_polecen.txt");
+//	if (!slowapolecen.good())
+//	{
+//		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
+//	}
+//	nrpolecen.open("./Resources/linux/nr_polecen.txt");
+//	if (!nrpolecen.good())
+//	{
+//		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"nr_polecen.txt\""));
+//	}
+//	deleteFindWords.open("./Resources/linux/wordsFindDelete.txt");
+//	if (!deleteFindWords.good())
+//	{
+//		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
+//	}
+//#endif
+//#ifdef _WIN32
+//	slowazmienne.open("./Resources/win32/slowa_zmienne.txt");
+//	if (!slowazmienne.good())
+//	{
+//		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
+//	}
+//	slowapolecen.open("./Resources/win32/slowa_polecen.txt");
+//	if (!slowapolecen.good())
+//	{
+//		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
+//	}
+//	nrpolecen.open("./Resources/win32/nr_polecen.txt");
+//	if (!nrpolecen.good())
+//	{
+//		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"nr_polecen.txt\""));
+//	}
+//	deleteFindWords.open("./Resources/win32/wordsFindDelete.txt");
+//	if (!deleteFindWords.good())
+//	{
+//		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
+//	}
+//#endif
 }
 
 Controler::~Controler()
 {
-	slowapolecen.close();
-	slowazmienne.close();
-	nrpolecen.close();
-	deleteFindWords.close();
+	Resources::exit();
 }
 
 void Controler::doCommendFun()
@@ -63,7 +63,6 @@ void Controler::doCommendFun()
 	int nrSlowa = 1;
 	polec = 0;/*!*/
 	myTextW = 0; 
-
 	for (int i = 0; i < 100; i++)
 		myText[i] = '\0';
 
@@ -352,7 +351,7 @@ string Controler::DoKommendyPodstawowej(string & c)
 		if (tmpS != " " && tmpS != ";" && lastSpecialWord[0] == tmpS[0])
 		{
 			lastSpecialWord = tmpS;
-			g = 1; nrpolecen.clear(); nrpolecen.seekg(0);
+			g = 1; Resources::nrpolecen.clear(); Resources::nrpolecen.seekg(0);
 			StringMod::ZamienianieSlow(c, tmpS, wordNr);
 			numberOfWordCombination++;
 			p += tmpS + " ";
@@ -366,8 +365,9 @@ string Controler::DoKommendyPodstawowej(string & c)
 				for (int i = IloscZmiennychPolecenia(p); i>0; i--) //and znalezione==0 ?!?
 				{
 					//Sprawdzanie sÂ³Ã³w z innego pliku (SÂ³owa_zmienne.txt)
-					sZc = StringMod::PobSlowZWiersza(c, wordNr); slowazmienne.clear(); slowazmienne.seekg(0);
-					while (znalezione == false && getline(slowazmienne, wierszSlowaZmienne))
+					sZc = StringMod::PobSlowZWiersza(c, wordNr); 
+					Resources::slowazmienne.clear(); Resources::slowazmienne.seekg(0);
+					while (znalezione == false && getline(Resources::slowazmienne, wierszSlowaZmienne))
 					{
 						while (StringMod::PobSlowZWiersza(wierszSlowaZmienne, g) != " " && znalezione == false)
 						{
@@ -402,8 +402,8 @@ string Controler::DoKommendyPodstawowej(string & c)
 		if (numberOfWordCombination == 0)
 			lastSpecialWord = tmpS;
 	}
-	slowapolecen.clear(); nrpolecen.clear(); slowazmienne.clear();
-	slowapolecen.seekg(0); nrpolecen.seekg(0); slowazmienne.seekg(0);
+	Resources::slowapolecen.clear(); Resources::nrpolecen.clear(); Resources::slowazmienne.clear();
+	Resources::slowapolecen.seekg(0); Resources::nrpolecen.seekg(0); Resources::slowazmienne.seekg(0);
 	if (numberOfErrors <= 0)
 		view->addOutText("\n#Niewykryto problemow.");
 	return c;
@@ -417,16 +417,16 @@ void Controler::deleteWordsWithFile(string & c)
 	sZc = StringMod::PobSlowZWiersza(c, nrSlowa);
 	while (sZc != " ")
 	{
-		deleteFindWords.clear(); deleteFindWords.seekg(0);
-		deleteFindWords >> sZdeleteWords;
-		while (deleteFindWords.good() && found == false)
+		Resources::deleteFindWords.clear(); Resources::deleteFindWords.seekg(0);
+		Resources::deleteFindWords >> sZdeleteWords;
+		while (Resources::deleteFindWords.good() && found == false)
 		{
 			if (sZc == sZdeleteWords)
 			{
 				StringMod::ZamienianieSlow(c, "/delete/", nrSlowa);
 				found = true;
 			}
-			deleteFindWords >> sZdeleteWords;
+			Resources::deleteFindWords >> sZdeleteWords;
 		}
 		nrSlowa++;
 		sZc = StringMod::PobSlowZWiersza(c, nrSlowa);
@@ -477,11 +477,11 @@ long Controler::getTimeFromString(string c)
 
 string Controler::KodSlowaKluczowego(string szukaneSlowo)
 {
-	slowapolecen.clear(); slowapolecen.seekg(0);
+	Resources::slowapolecen.clear(); Resources::slowapolecen.seekg(0);
 	string p;
 	int g = 1;
 
-	while (getline(slowapolecen, p))
+	while (getline(Resources::slowapolecen, p))
 	{
 		while (StringMod::PobSlowZWiersza(p, g + 1) != " ")  //SÂ³owo z wiersza z pliku
 		{
@@ -505,16 +505,16 @@ string Controler::KodSlowaKluczowego(string szukaneSlowo)
 int Controler::IloscZmiennychPolecenia(string szukanyNumer)
 {
 	string wiersz, wierszWyj;//int nr=1;
-	nrpolecen.clear(); nrpolecen.seekg(0);//??//!!//
-	while (getline(nrpolecen, wiersz))
+	Resources::nrpolecen.clear(); Resources::nrpolecen.seekg(0);//??//!!//
+	while (getline(Resources::nrpolecen, wiersz))
 	{
 		if (wiersz == szukanyNumer)
 		{
-			getline(nrpolecen, wiersz);
-			nrpolecen.clear(); nrpolecen.seekg(0);
+			getline(Resources::nrpolecen, wiersz);
+			Resources::nrpolecen.clear(); Resources::nrpolecen.seekg(0);
 			return StringMod::StringToInteger(StringMod::PobSlowZWiersza(wiersz, 1));
 		}//PobSlowZWiersza(wiersz,2);
-		else getline(nrpolecen, wiersz);
+		else getline(Resources::nrpolecen, wiersz);
 	}
 	numberOfErrors++;
 	string wyjError = "\n!#Blad w funkcji IloscZmiennychPolecenia &Brak danych w pliku 'nr_polecenia.txt' dla:'" + szukanyNumer + "'";
@@ -534,14 +534,14 @@ long long Controler::TimeInMsec(int czas, string typCzasu)
 string Controler::NumerPolecenia(string szukanyNumer)
 {
 	string wiersz;
-	while (getline(nrpolecen, wiersz))
+	while (getline(Resources::nrpolecen, wiersz))
 		if (wiersz == szukanyNumer)
 		{
-			getline(nrpolecen, wiersz);
-			nrpolecen.clear(); nrpolecen.seekg(0);
+			getline(Resources::nrpolecen, wiersz);
+			Resources::nrpolecen.clear(); Resources::nrpolecen.seekg(0);
 			return StringMod::PobSlowZWiersza(wiersz, 2);
 		}
-		else getline(nrpolecen, wiersz);
+		else getline(Resources::nrpolecen, wiersz);
 		numberOfErrors++;
 		string wyjError = "\n!#Blad w funkcji NumerPolecenia &Nieznaleniono numeru polecenia w pliku 'nr_polecen.txt' dla:'" + szukanyNumer + "'";
 		view->addOutText(wyjError);
@@ -552,10 +552,10 @@ string Controler::NumerPolecenia(string szukanyNumer)
 string Controler::KomendaPoleceniaSystemu(string szukanyNumer)
 {
 	string wiersz, wierszWyj = "";
-	while (getline(nrpolecen, wiersz))
+	while (getline(Resources::nrpolecen, wiersz))
 		if (wiersz == szukanyNumer)
 		{
-			getline(nrpolecen, wiersz);
+			getline(Resources::nrpolecen, wiersz);
 			int nr = 3;
 			while (StringMod::PobSlowZWiersza(wiersz, nr) != ";" && StringMod::PobSlowZWiersza(wiersz, nr) != " ")
 			{
@@ -563,11 +563,17 @@ string Controler::KomendaPoleceniaSystemu(string szukanyNumer)
 				wierszWyj += " ";
 			}
 		}
-		else getline(nrpolecen, wiersz);
-		nrpolecen.clear(); nrpolecen.seekg(0);
+		else getline(Resources::nrpolecen, wiersz);
+		Resources::nrpolecen.clear(); Resources::nrpolecen.seekg(0);
 		return wierszWyj;
 }
 
 void Controler::doCommendButtonPressed() {
 	doCommendFun();
+}
+
+IAddSynonimContr * Controler::getIAddSynonimCtr()
+{
+	IAddSynonimContr *asc = new AddSynonimCont;
+	return asc;
 }
