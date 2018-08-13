@@ -2,6 +2,8 @@
 
 #include "IAddSynonimContr.h"
 
+#include "ErrorHandle.h"
+
 #include <string>
 #include "Resources.h"
 
