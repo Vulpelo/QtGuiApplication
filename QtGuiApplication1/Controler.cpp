@@ -55,10 +55,6 @@ Controler::Controler(IView *nview)
 Controler::~Controler()
 {
 	Resources::exit();
-	//slowapolecen.close();
-	//slowazmienne.close();
-	//nrpolecen.close();
-	//deleteFindWords.close();
 }
 
 void Controler::doCommendFun()

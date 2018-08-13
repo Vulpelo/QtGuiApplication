@@ -15,8 +15,7 @@ void SimpleCommandWriter::Execute(ICon *ncontroler)
 {
 	controler = ncontroler;
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(doCommendFun()));
-	QObject::connect(ui.actionSynonim, SIGNAL(triggered()), this, SLOT(actionSynonimPressed()));
-
+	//QObject::connect(ui.actionSynonim, SIGNAL(triggered()), this, SLOT(actionSynonimPressed()));
 }
 
 string SimpleCommandWriter::getCommendText() {
@@ -50,7 +49,6 @@ void SimpleCommandWriter::actionSynonimPressed() {
 
 	newWindow->Execute(controler->getIAddSynonimCtr());
 	newWindow->show();
-
 
 	//controler->actionSynonimPressed();
 }
