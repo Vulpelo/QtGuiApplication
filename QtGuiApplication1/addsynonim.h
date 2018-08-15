@@ -19,5 +19,5 @@ private:
 
 public slots:
 	void addButtonClicked();
-
+	void cancelButtonClicked();
 };

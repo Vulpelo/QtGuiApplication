@@ -8,7 +8,6 @@ SimpleCommandWriter::SimpleCommandWriter(QWidget *parent)
 
 SimpleCommandWriter::~SimpleCommandWriter()
 {
-	//delete controler;
 }
 
 void SimpleCommandWriter::Execute(ICon *ncontroler)
@@ -16,6 +15,7 @@ void SimpleCommandWriter::Execute(ICon *ncontroler)
 	controler = ncontroler;
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(doCommendFun()));
 	QObject::connect(ui.actionSynonim, SIGNAL(triggered()), this, SLOT(actionSynonimPressed()));
+	QObject::connect(ui.actionNowe_slowo, SIGNAL(triggered()), this, SLOT(actionNewWordPressed()));
 }
 
 string SimpleCommandWriter::getCommendText() {
@@ -51,4 +51,11 @@ void SimpleCommandWriter::actionSynonimPressed() {
 	newWindow->show();
 
 	//controler->actionSynonimPressed();
+}
+
+void SimpleCommandWriter::actionNewWordPressed() {
+	AddMainWord *nW = new AddMainWord;
+
+	nW->Execute(controler->getIAddMainWordCtr());
+	nW->show();
 }

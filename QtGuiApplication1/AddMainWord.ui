@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddSynonim</class>
- <widget class="QWidget" name="AddSynonim">
+ <class>AddMainWord</class>
+ <widget class="QWidget" name="AddMainWord">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>387</width>
-    <height>149</height>
+    <width>394</width>
+    <height>115</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>387</width>
-    <height>149</height>
+    <width>394</width>
+    <height>115</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>387</width>
-    <height>149</height>
+    <width>396</width>
+    <height>115</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>AddSynonim</string>
+   <string>AddMainWord</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>371</width>
-     <height>131</height>
+     <width>381</width>
+     <height>101</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -40,12 +40,12 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Słowo podstawowe</string>
+         <string>Słowo główne</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="mainWordLineEdit"/>
+       <widget class="QLineEdit" name="NewMainWord_lineEdit"/>
       </item>
       <item>
        <spacer name="verticalSpacer">
@@ -58,66 +58,34 @@
         <property name="sizeHint" stdset="0">
          <size>
           <width>20</width>
-          <height>10</height>
+          <height>30</height>
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Synonim do słowa podstawowego</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="newWordLineEdit"/>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QPushButton" name="addButton">
+       <widget class="QPushButton" name="AddButton">
         <property name="text">
          <string>Add</string>
         </property>
         <property name="autoDefault">
          <bool>true</bool>
         </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="cancelButton">
+       <widget class="QPushButton" name="CancelButton">
         <property name="text">
          <string>Cancel</string>
         </property>
         <property name="autoDefault">
          <bool>true</bool>
         </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
        </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>10</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>

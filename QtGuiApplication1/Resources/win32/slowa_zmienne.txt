@@ -10,4 +10,4 @@ tekst tekstowy ;
 plik pliki ; 
 M mb megabajt megabajtow megabajta ; 
 k kb kilobajtow kilobajt kilobajta ; 
-G gigabajtow gb gigabajt gigabajta ; 
+G gigabajtow gb gigabajt gigabajta ; 

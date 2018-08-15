@@ -6,50 +6,6 @@ Controler::Controler(IView *nview)
 {
 	view = nview;
 	Resources::initialize();
-//#ifdef linux
-//	slowazmienne.open("./Resources/linux/slowa_zmienne.txt");
-//	if (!slowazmienne.good())
-//	{
-//		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
-//	}
-//	slowapolecen.open("./Resources/linux/slowa_polecen.txt");
-//	if (!slowapolecen.good())
-//	{
-//		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
-//	}
-//	nrpolecen.open("./Resources/linux/nr_polecen.txt");
-//	if (!nrpolecen.good())
-//	{
-//		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"nr_polecen.txt\""));
-//	}
-//	deleteFindWords.open("./Resources/linux/wordsFindDelete.txt");
-//	if (!deleteFindWords.good())
-//	{
-//		view->addOutText(ErrorHandle::getString(ErrorType::FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
-//	}
-//#endif
-//#ifdef _WIN32
-//	slowazmienne.open("./Resources/win32/slowa_zmienne.txt");
-//	if (!slowazmienne.good())
-//	{
-//		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"slowa_zmienne.txt\""));
-//	}
-//	slowapolecen.open("./Resources/win32/slowa_polecen.txt");
-//	if (!slowapolecen.good())
-//	{
-//		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"slowa_polecen.txt\""));
-//	}
-//	nrpolecen.open("./Resources/win32/nr_polecen.txt");
-//	if (!nrpolecen.good())
-//	{
-//		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"nr_polecen.txt\""));
-//	}
-//	deleteFindWords.open("./Resources/win32/wordsFindDelete.txt");
-//	if (!deleteFindWords.good())
-//	{
-//		view->addOutText(ErrorHandle::getString(ErrorType::E_FILE_NOT_OPENED, "\"wordsFindDelete.txt\""));
-//	}
-//#endif
 }
 
 Controler::~Controler()
@@ -576,4 +532,10 @@ IAddSynonimContr * Controler::getIAddSynonimCtr()
 {
 	IAddSynonimContr *asc = new AddSynonimCont;
 	return asc;
+}
+
+IAddMainWordCtr * Controler::getIAddMainWordCtr()
+{
+	IAddMainWordCtr *ctr = new AddMainWordCtr;
+	return ctr;
 }

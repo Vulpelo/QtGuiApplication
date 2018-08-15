@@ -92,6 +92,11 @@ namespace res
 		static void begining_slowapolecen();
 		static void begining_nrpolecen();
 		static void begining_deleteFindWords();
+
+		static void ending_slowazmienne();
+		static void ending_slowapolecen();
+		static void ending_nrpolecen();
+		static void ending_deleteFindWords();
 	};
 };
 

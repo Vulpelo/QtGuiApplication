@@ -34,7 +34,16 @@
       <enum>QLayout::SetMaximumSize</enum>
      </property>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0">
+       <property name="spacing">
+        <number>1</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QLabel" name="label">
          <property name="sizePolicy">
@@ -184,6 +193,7 @@
     <property name="title">
      <string>Dodaj</string>
     </property>
+    <addaction name="actionNowe_slowo"/>
     <addaction name="actionSynonim"/>
    </widget>
    <addaction name="menuDodaj"/>
@@ -192,6 +202,11 @@
   <action name="actionSynonim">
    <property name="text">
     <string>Synonim</string>
+   </property>
+  </action>
+  <action name="actionNowe_slowo">
+   <property name="text">
+    <string>Nowe słowo główne</string>
    </property>
   </action>
  </widget>
