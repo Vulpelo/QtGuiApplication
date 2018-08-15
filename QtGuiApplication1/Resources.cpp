@@ -27,4 +27,25 @@ namespace res {
 		Resources::deleteFindWords.clear();
 		Resources::deleteFindWords.seekp(0, std::ios_base::beg);
 	}
+
+	void Resources::ending_slowazmienne()
+	{
+		Resources::slowazmienne.clear();
+		Resources::slowazmienne.seekp(0, std::ios_base::end);
+	}
+	void Resources::ending_slowapolecen()
+	{
+		Resources::slowapolecen.clear();
+		Resources::slowapolecen.seekp(0, std::ios_base::end);
+	}
+	void Resources::ending_nrpolecen()
+	{
+		Resources::nrpolecen.clear();
+		Resources::nrpolecen.seekp(0, std::ios_base::end);
+	}
+	void Resources::ending_deleteFindWords()
+	{
+		Resources::deleteFindWords.clear();
+		Resources::deleteFindWords.seekp(0, std::ios_base::end);
+	}
 }

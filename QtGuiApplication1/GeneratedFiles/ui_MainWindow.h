@@ -33,6 +33,7 @@ class Ui_QtGuiApplication1Class
 {
 public:
     QAction *actionSynonim;
+    QAction *actionNowe_slowo;
     QWidget *centralWidget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
@@ -61,6 +62,8 @@ public:
         QtGuiApplication1Class->setMinimumSize(QSize(462, 473));
         actionSynonim = new QAction(QtGuiApplication1Class);
         actionSynonim->setObjectName(QStringLiteral("actionSynonim"));
+        actionNowe_slowo = new QAction(QtGuiApplication1Class);
+        actionNowe_slowo->setObjectName(QStringLiteral("actionNowe_slowo"));
         centralWidget = new QWidget(QtGuiApplication1Class);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayoutWidget = new QWidget(centralWidget);
@@ -73,8 +76,10 @@ public:
         verticalLayout->setSizeConstraint(QLayout::SetMaximumSize);
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setSpacing(1);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
+        verticalLayout_2->setContentsMargins(0, -1, -1, -1);
         label = new QLabel(verticalLayoutWidget);
         label->setObjectName(QStringLiteral("label"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -180,6 +185,7 @@ public:
         QtGuiApplication1Class->setStatusBar(statusBar);
 
         menuBar->addAction(menuDodaj->menuAction());
+        menuDodaj->addAction(actionNowe_slowo);
         menuDodaj->addAction(actionSynonim);
 
         retranslateUi(QtGuiApplication1Class);
@@ -194,6 +200,7 @@ public:
     {
         QtGuiApplication1Class->setWindowTitle(QApplication::translate("QtGuiApplication1Class", "QtGuiApplication1", Q_NULLPTR));
         actionSynonim->setText(QApplication::translate("QtGuiApplication1Class", "Synonim", Q_NULLPTR));
+        actionNowe_slowo->setText(QApplication::translate("QtGuiApplication1Class", "Nowe s\305\202owo g\305\202\303\263wne", Q_NULLPTR));
         label->setText(QApplication::translate("QtGuiApplication1Class", "Ostatnio wpisana komenda", Q_NULLPTR));
         label_2->setText(QApplication::translate("QtGuiApplication1Class", "Zedytowana komenda", Q_NULLPTR));
         TextCtrlLastCommandEdited->setText(QString());

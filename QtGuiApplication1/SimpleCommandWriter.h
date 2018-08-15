@@ -3,10 +3,14 @@
 #ifndef QTGUIAPPLICATION1_H
 #define QTGUIAPPLICATION1_H
 
+// This window
 #include "ui_MainWindow.h"
 
+// other widgets/windows
 #include "addsynonim.h"
+#include "AddMainWord.h"
 
+// qt libraries
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QMessageBox>
@@ -18,7 +22,9 @@
 #include "ThreadData.h"
 #include "IView.h"
 #include "ICon.h"
+// other interfaces
 #include "IAddSynonimContr.h"
+#include "IAddMainWordCtr.h"
 
 using namespace std;
 
@@ -46,6 +52,7 @@ public:
 public slots:
 	void actionSynonimPressed();
 	void doCommendFun();
+	void actionNewWordPressed();
 };
 
 #endif // !QTGUIAPPLICATION1_H

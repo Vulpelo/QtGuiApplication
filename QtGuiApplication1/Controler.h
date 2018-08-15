@@ -12,10 +12,13 @@
 
 #include "ErrorHandle.h"
 #include "ThreadData.h"
+#include "StringMod.h"
+
 #include "ICon.h"
 #include "IView.h"
-#include "StringMod.h"
+
 #include "AddSynonimCont.h"
+#include "AddMainWordCtr.h"
 
 #include "Resources.h"
 
@@ -24,11 +27,6 @@ class Controler : public ICon
 {
 #pragma region Variables
 	IView *view;
-
-	//fstream slowazmienne;
-	//fstream slowapolecen;
-	//fstream nrpolecen;
-	//fstream deleteFindWords;
 
 	char myText[100];
 	string c, tekst;
@@ -60,6 +58,8 @@ public:
 #pragma region ICon functions
 	void doCommendButtonPressed();
 	IAddSynonimContr *getIAddSynonimCtr();
+	IAddMainWordCtr *getIAddMainWordCtr();
+
 #pragma endregion
 	Controler(IView *nview);
 	~Controler();

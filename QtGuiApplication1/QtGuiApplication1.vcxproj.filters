@@ -50,6 +50,15 @@
     <Filter Include="Header Files\GUI">
       <UniqueIdentifier>{b0bcd49c-1c9b-426a-aeae-f2a64b443161}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Ctr">
+      <UniqueIdentifier>{bbad0512-bc47-40d1-ad6c-4834b659c79b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ctr">
+      <UniqueIdentifier>{92558212-8200-41dd-b0ca-ed91322b0710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interfaces">
+      <UniqueIdentifier>{3eeae33f-6d22-49e7-b03e-7ff6a8844db0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -57,9 +66,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_QtGuiApplication1.cpp">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Controler.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_ThreadData.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -91,11 +97,26 @@
     <ClCompile Include="SimpleCommandWriter.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="AddSynonimCont.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Resources.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AddMainWord.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AddMainWord.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="AddMainWord.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Controler.cpp">
+      <Filter>Source Files\Ctr</Filter>
+    </ClCompile>
+    <ClCompile Include="AddSynonimCont.cpp">
+      <Filter>Source Files\Ctr</Filter>
+    </ClCompile>
+    <ClCompile Include="AddMainWordCtr.cpp">
+      <Filter>Source Files\Ctr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,9 +124,6 @@
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="ThreadData.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Controler.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="MainWindow.ui">
@@ -120,14 +138,17 @@
     <CustomBuild Include="addsynonim.h">
       <Filter>Header Files\GUI</Filter>
     </CustomBuild>
+    <CustomBuild Include="AddMainWord.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AddMainWord.h">
+      <Filter>Header Files\GUI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Controler.h">
+      <Filter>Header Files\Ctr</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ErrorHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -140,17 +161,32 @@
     <ClInclude Include="StringMod.h">
       <Filter>Header Files\ExtClass</Filter>
     </ClInclude>
-    <ClInclude Include="IAddSynonimContr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IAddSynonimView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AddSynonimCont.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Resources.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AddMainWord.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddSynonimCont.h">
+      <Filter>Header Files\Ctr</Filter>
+    </ClInclude>
+    <ClInclude Include="IAddMainWordCtr.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IAddSynonimContr.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IAddSynonimView.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ICon.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IView.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="AddMainWordCtr.h">
+      <Filter>Header Files\Ctr</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

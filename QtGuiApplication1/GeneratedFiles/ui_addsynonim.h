@@ -90,11 +90,13 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         addButton = new QPushButton(horizontalLayoutWidget);
         addButton->setObjectName(QStringLiteral("addButton"));
+        addButton->setAutoDefault(true);
 
         verticalLayout_2->addWidget(addButton);
 
         cancelButton = new QPushButton(horizontalLayoutWidget);
         cancelButton->setObjectName(QStringLiteral("cancelButton"));
+        cancelButton->setAutoDefault(true);
 
         verticalLayout_2->addWidget(cancelButton);
 
@@ -107,6 +109,10 @@ public:
 
 
         retranslateUi(AddSynonim);
+
+        addButton->setDefault(false);
+        cancelButton->setDefault(false);
+
 
         QMetaObject::connectSlotsByName(AddSynonim);
     } // setupUi
