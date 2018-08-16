@@ -132,101 +132,101 @@ void Controler::doCommendFun()
 #endif
 
 #ifdef _WIN32
-			view->addOutText("-!-FIND COMMAND NOT SUPPORTED ON WINDOWS\n");
-			return;
-			/*
-			wordCommendCombination += "where c:\\";
+			//view->addOutText("-!-FIND COMMAND NOT SUPPORTED ON WINDOWS\n");
+			//return;
+
+			wordCommendCombination += "cd / & forfiles /S";
 			nrSlowa++;
-			while (PobSlowZWiersza(c, nrSlowa) != " ")
+			while (StringMod::PobSlowZWiersza(c, nrSlowa) != " ")
 			{
 				//wyszukiwanie pliku graficznego
-				if (PobSlowZWiersza(c, nrSlowa) == "obraz")
+				//if (StringMod::PobSlowZWiersza(c, nrSlowa) == "obraz")
+				//{
+				//	if (StringMod::PobSlowZWiersza(c, nrSlowa + 1) == "$008")
+				//	{
+				//		wordCommendCombination += " -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.png'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.bmp'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jpg'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jpeg'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.gif'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jps'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.tiff'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.flif'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.xcf'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.psd'";
+				//		wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.xpm' -a -iname '*'";
+				//		nrSlowa += 2;
+				//	}
+				//	else
+				//	{
+				//		wordCommendCombination += " -iname '*.jpg' -o -iname '*.bmp' -o -iname '*.gif' -o -iname '*.jps' -o -iname '*.png' -o -iname '*.jpeg'";
+				//		wordCommendCombination += " -o -iname '*.tiff' -o -iname '*.flif' -o -iname '*.xcf' -o -iname '*.xpm' -o -iname '*.psd'";
+				//	}
+				//}
+				//wyszukiwanie jakiegokolwiek typu pliku po nazwie
+				if (StringMod::PobSlowZWiersza(c, nrSlowa) == "plik") 
 				{
-					if (PobSlowZWiersza(c, nrSlowa + 1) == "$008")
+					if (StringMod::PobSlowZWiersza(c, nrSlowa + 1) == "$008")
 					{
-						wordCommendCombination += " -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.png'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.bmp'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jpg'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jpeg'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.gif'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.jps'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.tiff'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.flif'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.xcf'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.psd'";
-						wordCommendCombination += " -o -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*.xpm' -a -iname '*'";
-						nrSlowa += 2;
-					}
-					else
-					{
-						wordCommendCombination += " -iname '*.jpg' -o -iname '*.bmp' -o -iname '*.gif' -o -iname '*.jps' -o -iname '*.png' -o -iname '*.jpeg'";
-						wordCommendCombination += " -o -iname '*.tiff' -o -iname '*.flif' -o -iname '*.xcf' -o -iname '*.xpm' -o -iname '*.psd'";
-					}
-				}
-				else if (PobSlowZWiersza(c, nrSlowa) == "plik") //wyszukiwanie jakiegokolwiek typu pliku po nazwie
-				{
-					if (PobSlowZWiersza(c, nrSlowa + 1) == "$008")
-					{
-						wordCommendCombination += " -iname " + PobSlowZWiersza(c, nrSlowa + 2) + " -a -iname '*'";
+						wordCommendCombination += " /M \"" + StringMod::PobSlowZWiersza(c, nrSlowa + 2) + "\" ";
 						nrSlowa += 2;
 					}
 				}
 				//wyszukiwanie po dacie modyfikacji
-				else if (PobSlowZWiersza(c, nrSlowa) == "$009")
+				else if (StringMod::PobSlowZWiersza(c, nrSlowa) == "$009")
 				{
-					if (PobSlowZWiersza(c, nrSlowa + 1) == "$010") //przed
+					if (StringMod::PobSlowZWiersza(c, nrSlowa + 1) == "$010") //przed
 					{
-						wordCommendCombination += " -not -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
+						wordCommendCombination += " /D -" + StringMod::PobSlowZWiersza(c, nrSlowa + 2);
 						nrSlowa += 2;
 					}
-					else if (PobSlowZWiersza(c, nrSlowa + 1) == "%000") //po
+					else if (StringMod::PobSlowZWiersza(c, nrSlowa + 1) == "%000") //po
 					{
-						wordCommendCombination += " -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
+						wordCommendCombination += " /D " + StringMod::PobSlowZWiersza(c, nrSlowa + 2);
 						nrSlowa += 2;
 					}
-					else if (PobSlowZWiersza(c, nrSlowa + 1) == "$011") // miedzy
-					{
-						if (PobSlowZWiersza(c, nrSlowa + 2) < PobSlowZWiersza(c, nrSlowa + 3))
-						{
-							wordCommendCombination += " -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
-							wordCommendCombination += " -not -newermt " + PobSlowZWiersza(c, nrSlowa + 3);
-							nrSlowa += 3;
-						}
-						else
-						{
-							wordCommendCombination += " -newermt " + PobSlowZWiersza(c, nrSlowa + 3);
-							wordCommendCombination += " -not -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
-							nrSlowa += 3;
-						}
-					}
+					//else if (StringMod::PobSlowZWiersza(c, nrSlowa + 1) == "$011") // miedzy
+					//{
+					//	if (PobSlowZWiersza(c, nrSlowa + 2) < PobSlowZWiersza(c, nrSlowa + 3))
+					//	{
+					//		wordCommendCombination += " -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
+					//		wordCommendCombination += " -not -newermt " + PobSlowZWiersza(c, nrSlowa + 3);
+					//		nrSlowa += 3;
+					//	}
+					//	else
+					//	{
+					//		wordCommendCombination += " -newermt " + PobSlowZWiersza(c, nrSlowa + 3);
+					//		wordCommendCombination += " -not -newermt " + PobSlowZWiersza(c, nrSlowa + 2);
+					//		nrSlowa += 3;
+					//	}
+					//}
 				}
-				//wyszukiwanie po rozmiarze
-				else if (PobSlowZWiersza(c, nrSlowa) == "$00A")
-				{
-					if (PobSlowZWiersza(c, nrSlowa + 1) == "$00B") //do x
-					{
-						wordCommendCombination += " -size -" + PobSlowZWiersza(c, nrSlowa + 2) + PobSlowZWiersza(c, nrSlowa + 3);
-						nrSlowa += 3;
-					}
-					else if (PobSlowZWiersza(c, nrSlowa + 1) == "$00C") //wiekszye od x
-					{
-						wordCommendCombination += " -size +" + PobSlowZWiersza(c, nrSlowa + 2) + PobSlowZWiersza(c, nrSlowa + 3);
-						nrSlowa += 3;
-					}
-					else if (PobSlowZWiersza(c, nrSlowa + 1) == "$011")
-					{
-						if (PobSlowZWiersza(c, nrSlowa + 2) > PobSlowZWiersza(c, nrSlowa + 3))
-							wordCommendCombination += " -size +" + PobSlowZWiersza(c, nrSlowa + 2) + PobSlowZWiersza(c, nrSlowa + 4) + "-not -size +" + PobSlowZWiersza(c, nrSlowa + 3) + PobSlowZWiersza(c, nrSlowa + 3);
-						else
-							wordCommendCombination += " -size +" + PobSlowZWiersza(c, nrSlowa + 3) + PobSlowZWiersza(c, nrSlowa + 4) + "-not -size +" + PobSlowZWiersza(c, nrSlowa + 2) + PobSlowZWiersza(c, nrSlowa + 3);
-						nrSlowa += 4;
-					}
-				}
+				////wyszukiwanie po rozmiarze
+				//else if (StringMod::PobSlowZWiersza(c, nrSlowa) == "$00A")
+				//{
+				//	if (StringMod::PobSlowZWiersza(c, nrSlowa + 1) == "$00B") //do x
+				//	{
+				//		wordCommendCombination += " -size -" + StringMod::PobSlowZWiersza(c, nrSlowa + 2) + StringMod::PobSlowZWiersza(c, nrSlowa + 3);
+				//		nrSlowa += 3;
+				//	}
+				//	else if (StringMod::PobSlowZWiersza(c, nrSlowa + 1) == "$00C") //wiekszye od x
+				//	{
+				//		wordCommendCombination += " -size +" + StringMod::PobSlowZWiersza(c, nrSlowa + 2) + StringMod::PobSlowZWiersza(c, nrSlowa + 3);
+				//		nrSlowa += 3;
+				//	}
+				//	else if (StringMod::PobSlowZWiersza(c, nrSlowa + 1) == "$011")
+				//	{
+				//		if (StringMod::PobSlowZWiersza(c, nrSlowa + 2) > StringMod::PobSlowZWiersza(c, nrSlowa + 3))
+				//			wordCommendCombination += " -size +" + StringMod::PobSlowZWiersza(c, nrSlowa + 2) + StringMod::PobSlowZWiersza(c, nrSlowa + 4) + "-not -size +" + StringMod::PobSlowZWiersza(c, nrSlowa + 3) + StringMod::PobSlowZWiersza(c, nrSlowa + 3);
+				//		else
+				//			wordCommendCombination += " -size +" + StringMod::PobSlowZWiersza(c, nrSlowa + 3) + StringMod::PobSlowZWiersza(c, nrSlowa + 4) + "-not -size +" + StringMod::PobSlowZWiersza(c, nrSlowa + 2) + StringMod::PobSlowZWiersza(c, nrSlowa + 3);
+				//		nrSlowa += 4;
+				//	}
+				//}
 
 				nrSlowa++;
 			}
-			wordCommendCombination += "> out.txt ;";
-			*/
+			wordCommendCombination += " /C \"cmd /c echo @path\" & pause";
 #endif
 
 			ThreadData data;
