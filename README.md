@@ -28,5 +28,7 @@ Zamknij [nazwa_aplikacji] za 10 min
 ```
 Legenda:
 [nazwa_aplikacji] - musi być uwcześniej zapisana w pliku tekstowym "slowa_zmienne.txt"
-[nazwa_wyszukiwania] - podajesz nazwę pliku. W nazwie można użyć znaków specjalnych: * - dowolne znaki; ? - jakiś jeden dowolny znak. Przykłady: "*.txt" - wszystkie pliki które kończą się nazwą na .txt; "na??a.txt" - wszystkie pliki o podanej nazwie podstawiając za pytajniki dowolne znaki 
+[nazwa_wyszukiwania] - podajesz nazwę pliku. W nazwie można użyć znaków specjalnych: 
+* - dowolne znaki; 
+? - jakiś jeden dowolny znak. Przykłady: "*.txt" - wszystkie pliki które kończą się nazwą na .txt; "na??a.txt" - wszystkie pliki o podanej nazwie podstawiając za pytajniki dowolne znaki 
 ```
