@@ -237,8 +237,6 @@ void Controler::doCommendFun()
 			data.view = view;
 			data.nrPowiadomienia = 1;
 
-			view->addOutText("Wyszukiwanie...");
-
 			createThread(data);
 		}
 		else
@@ -286,7 +284,7 @@ string Controler::DoKommendyPodstawowej(string & c)
 	{
 		if (c[i] >= 'A' && c[i] <= 'Z') c[i] = c[i] + 32;
 		//nieusuwanie określonych znaków i takich w pewnych sytuacjach
-		else if ((c[i] == '.' && c[i + 1] >= 'a' && c[i + 1] <= 'z') || c[i] == '*' || c[i] == 39);
+		else if ((c[i] == '.' && ( (c[i + 1] >= 'a' && c[i + 1] <= 'z') || ( c[i+1] >= '0' && c[i + 1] <= '9') )  ) || c[i] == '*' || c[i] == 39);
 		else if ((c[i] >= 33 && c[i] <= 47) || (c[i] >= 58 && c[i] <= 64) || (c[i] >= 91 && c[i] <= 96) || (c[i] >= 123 && c[i] <= 126))
 			c.erase(i, 1);
 	};
