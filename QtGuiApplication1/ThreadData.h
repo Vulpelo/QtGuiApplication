@@ -11,6 +11,7 @@
 #include <string>
 #include <stdio.h>
 #include <windows.h>
+#include <stdlib.h> 
 
 #include "ErrorHandle.h"
 #include "IView.h"
@@ -112,6 +113,19 @@ private:
 			for (int i = 0; i < data.commendMain.size(); i++) 
 				T[i] = data.commendMain[i]; 
 			system(T);
+			//FILE *out;
+			//char buffor[128];
+
+			//if ((out = _popen(T, "rt")) != NULL) {
+			//	while (fgets(buffor, 128, out))
+			//	{
+			//		data.view->addOutText(buffor);
+			//	}
+			//	if (feof(out))
+			//	{
+			//		_pclose(out);
+			//	}
+			//}
 		}
 
 		notification(data.nrPowiadomienia);
